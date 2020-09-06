@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     // Parse config && create PID
 
     niias::arguments nargs( argc, argv,
-                            "cservice_template - JSC NIIAS",
+                            "vlib - JSC NIIAS",
                             Config::by_default() );
     Config config;
     {

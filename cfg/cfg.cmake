@@ -3,7 +3,7 @@
 INCLUDE_DIRECTORIES( cfg )
 
 set( CFG
-    cfg/cservice_template.cfg
+    cfg/vlib.cfg
     cfg/sanalyzer.cfg
    )
 

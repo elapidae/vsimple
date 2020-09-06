@@ -35,16 +35,16 @@ git checkout develop
 
 ```
 
-- Replace all cservice_template entries by new with preview:
+- Replace all vlib entries by new with preview:
 
 ```
-./scripts/rename.sh cservice_template new_service_name
+./scripts/rename.sh vlib new_service_name
 ```
 
 - Result should be:
 ```
---@--:~/Desktop/template/new_service_name$ ./scripts/rename.sh cservice_template new_service_name
-Replacement from cservice_template to new_service_name done
+--@--:~/Desktop/template/new_service_name$ ./scripts/rename.sh vlib new_service_name
+Replacement from vlib to new_service_name done
 ```
 
 - View the changelog:

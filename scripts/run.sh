@@ -1,2 +1,2 @@
 cd build
-./cservice_template -c ../cfg/cservice_template.cfg -p /tmp/cservice_template
+./vlib -c ../cfg/vlib.cfg -p /tmp/vlib
