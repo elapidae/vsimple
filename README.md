@@ -1,13 +1,9 @@
 # vlib
 
-[[Build status](http://bamboo.niias/browse/TOOL-CSERVICEBUILD/latest)]
-[[Tests status](http://bamboo.niias/browse/TOOL-CSERVICEBUILD/test)]
 [[License](./doc/LICENSE.md)]
 
 
-Service for ...
-
-**vlib** is the software designed for ... It is developed based on C++17 and provides easy-to-use API. With **vlib**, users can quickly connect to ..., receive ... data and transmit decision via ....
+A repository of *C++11* solutions, assembled as micro-components.
 
 ---
 
@@ -16,7 +12,7 @@ Service for ...
 1.  [ Overview ](#overview)
 2.  [ Dependencies ](#dependencies)
 3.  [ Installation ](#installation)
-4.  [ Run ](#run)
+4.  [ Usage ](#usage)
 5.  [ Tests ](#tests)
 6.  [ Release History ](#release)
 7.  [ Contributing ](#contributing)
@@ -29,7 +25,27 @@ Service for ...
 <a name="overview"></a>
 ## 1. Overview
 
-A service is a template for proper use by developers within a company. The number of services is constantly growing, however, their base remains unchanged. In the current repository, the author has tried to simplify many routine tasks when creating a new repository, including: automatic code documentation, static analysis, code coverage with Unit-tests, the use of generally accepted company submodules to interact with other services in the system.
+Each component provides a solution, or helps in solving a problem. Components combine a common approach to use, connect to QMake and CMake projects. All the code is delivered as is, no source codes need to be collected, but you need to connect the necessary components directly to the build system of the QMake / CMake project.
+
+There are many subtleties and questions, this is a "seed" description that should be developed as far as possible, questions and comments are very welcome.
+
+---
+
+- [gtests](./src/gtests/README)
+- [vbyte_buffer]()
+- [vcan_socket](./src/vcan_socket/README)
+- [vcat](./src/vcat/README)
+- [vchrono]()
+- [vcompiler_traits](./src/vcompiler_traits/README)
+- [vgit](./src/vgit/README)
+- [vlog](./src/vlog/README)
+- [vnetwork]()
+- [vposix](./src/vposix/README)
+- [vprofile]()
+- [vserial_port]()
+- [vsettings](./src/vsettings/README)
+- [vsignal]()
+- [vtimer]()
 
 ---
 
@@ -39,7 +55,7 @@ A service is a template for proper use by developers within a company. The numbe
 Basic:<br>
 
 - [build-essential](https://packages.debian.org/ru/sid/build-essential)
-- [C++17 (GCC-8, G++-8)](https://en.cppreference.com/w/cpp/17)
+- [C++11 (GCC-5, G++-5)](https://en.cppreference.com/w/cpp/11)
 - [CMake (> 3.10)](https://cmake.org)
 - [Make (> 4.2)](https://en.wikipedia.org/wiki/Make_(software))
 - [LCov (> 1.14)](http://ltp.sourceforge.net/coverage/lcov.php)
@@ -53,7 +69,6 @@ Third-party (for visualization):<br>
 - [Graphviz](https://graphviz.org)
 - [Latex](https://www.latex-project.org/get/)
 - [Tree](https://pingvinus.ru/note/tree)
-- [PCL (> 1.10)](https://pointclouds.org)
 
 ---
 
@@ -64,30 +79,33 @@ The installation procedures in Linux Ubuntu 16.04/14.04 32-bit LTS or Linux Mint
 
 ---
 
-<a name="run"></a>
-## 4. Run
+<a name="usage"></a>
+## 4. Usage
 
-Make changes according to task in [configuration file](./cfg).
+The *qmake* & *cmake* folders are added to add **.pri & *.cmake* files there (with symlinks). In the same place, simple connections of some keys are created (for example, ```cmake/c++11.cmake``` ```qmake/pthread.pri``` ).
 
+To connect the **<vcomponent>** you need: <br>
+1. Download the repository.<br>
+2. Register the lines in the project file:<br>
+
+For cmake:
 ```
-cd vlib
-git checkout release
-```
-Without [visualization](./doc/README.md): ```./scripts/build.sh``` <br>
-With [visualization](./doc/README.md): ```./scripts/build-gui.sh```
-
-```
-./scripts/run.sh
+	set( VLIBS_DIR "path_to/vlibs" )
+	include( "${VLIBS_DIR}/cmake/vcomponent.cmake" )
 ```
 
-Or using [Qt Creator IDE](https://www.qt.io/download):
+For qmake:
+```
+	VLIBS_DIR = $$PWD/path_to/vlibs
+	include( $$VLIBS_DIR/qmake/vcomponent.pri )
+```
 
-
-Without [visualization](./doc/README.md): **Projects->Run->.*-c ../vlib/cfg/vlib.cfg -p /tmp/niias/vlib<br>
-
-With [visualization](./doc/README.md): <br>
-- *Projects->Build->CMake->GUI->ON->Apply Configuration Changes* <br>
-- *Projects->Run->* ```-c ../vlib/cfg/vlib.cfg -p /tmp/niias/vlib``` <br>
+3. Enjoy:
+```
+	#include "vcomponent.h"
+	VComponent c;
+	c.use();
+```
 
 You can find more scripts in [scripts/](./scripts).
 
@@ -123,10 +141,13 @@ You can find more scripts in [scripts/](./scripts).
 <a name="support"></a>
 ## 8. Support
 
-Reach out to me at one of the following places!
+Reach out of us at one of the following places!
 
-- Telegram at - <a href="http://https://telegram.org" target="_blank">`@DLeliuhin`</a>
-- Email at - dleliuhin@gmail.com.
+Alexander Gromtsev:<br>
+- Email at - elapidae.grom@gmail.com
+
+Dmitrii Leliuhin:<br>
+- Email at - dleliuhin@gmail.com
 
 ---
 

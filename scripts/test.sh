@@ -1,22 +1,6 @@
 #!/bin/bash
 
-if [ -d "tests/build_test" ];
-then
-        rm -rf tests/build_test/*
-else
-        mkdir -p tests/build_test
-fi
+cd src/gtests       || exit 1
+./run_all.sh    || exit 1
 
-cd tests/build_test
-
-cmake ..
-
-make -j $(($(nproc) - 1))
-
-shopt -s extglob
-
-./test_vlib
-
-../../scripts/coverage.sh . ../../doc/coverage | tail -n 3
-
-rm -rf !("test_vlib")
+exit 0
