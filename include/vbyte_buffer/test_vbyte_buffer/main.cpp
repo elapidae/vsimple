@@ -1,7 +1,4 @@
 /****************************************************************************************
-**
-**  VLIBS codebase, NIIAS
-**
 **  GNU Lesser General Public License Usage
 **  This file may be used under the terms of the GNU Lesser General Public License
 **  version 3 as published by the Free Software Foundation and appearing in the file
@@ -19,6 +16,8 @@ template<class> class TD;
 
 using namespace std;
 
+//=======================================================================================
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpragmas"
 #pragma GCC diagnostic ignored "-Wweak-vtables"
@@ -30,10 +29,10 @@ class VByteBuffer_Test: public testing::Test
 //=======================================================================================
 TEST_F( VByteBuffer_Test, ctors )
 {
-    vbyte_buffer bb_empty;
+    VByteBuffer bb_empty;
     EXPECT_EQ( bb_empty.str(), string{} );
 
-    vbyte_buffer bb( "ololo" );
+    VByteBuffer bb( "ololo" );
     EXPECT_EQ( bb.str(), string{"ololo"} );
 
     // for operator string().
@@ -45,9 +44,9 @@ TEST_F( VByteBuffer_Test, ctors )
 
 TEST_F( VByteBuffer_Test, compare )
 {
-    vbyte_buffer b1{"123"};
-    vbyte_buffer b2{"123"};
-    vbyte_buffer b3{"12"};
+    VByteBuffer b1{"123"};
+    VByteBuffer b2{"123"};
+    VByteBuffer b3{"12"};
     EXPECT_EQ( b1, b1 );
     EXPECT_EQ( b1, b2 );
     EXPECT_NE( b1, b3 );
@@ -64,7 +63,7 @@ TEST_F( VByteBuffer_Test, compare )
 
 TEST_F( VByteBuffer_Test, appends )
 {
-    vbyte_buffer bb;
+    VByteBuffer bb;
     uint8_t u8 = 'U';
     int8_t  i8 = 'I';
     char c = 'C';
@@ -82,13 +81,13 @@ TEST_F( VByteBuffer_Test, appends )
 
 TEST_F( VByteBuffer_Test, chops_resize )
 {
-    vbyte_buffer bb{ "1234567890" };
+    VByteBuffer bb{ "1234567890" };
     bb.chop_front(5);
     EXPECT_EQ( bb.str(), "67890" );
     bb.chop_front(50);
     EXPECT_EQ( bb.str(), "" );
 
-    bb = vbyte_buffer{ "1234567890" };
+    bb = VByteBuffer{ "1234567890" };
     bb.chop_back(1);
     EXPECT_EQ( bb.str(), "123456789" );
     bb.chop_back(2);
@@ -96,7 +95,7 @@ TEST_F( VByteBuffer_Test, chops_resize )
     bb.chop_back(21111);
     EXPECT_EQ( bb.str(), "" );
 
-    bb = vbyte_buffer{ "1234567890" };
+    bb = VByteBuffer{ "1234567890" };
     bb.resize(7);
     EXPECT_EQ( bb.str(), "1234567" );
     bb.resize(7);
@@ -111,7 +110,7 @@ TEST_F( VByteBuffer_Test, chops_resize )
 
 TEST_F( VByteBuffer_Test, left_right_middle )
 {
-    vbyte_buffer bb{ "1234567890" };
+    VByteBuffer bb{ "1234567890" };
     EXPECT_EQ( bb.left(0).str(), "" );
     EXPECT_EQ( bb.left(3).str(), "123" );
     EXPECT_EQ( bb.left(7).str(), "1234567" );
@@ -142,7 +141,7 @@ TEST_F( VByteBuffer_Test, left_right_middle )
 
 TEST_F( VByteBuffer_Test, starts_ends_with )
 {
-    vbyte_buffer bb{ "1234567890" };
+    VByteBuffer bb{ "1234567890" };
 
     EXPECT_TRUE ( bb.starts_with("123") );
     EXPECT_FALSE( bb.starts_with("23") );
@@ -159,14 +158,14 @@ TEST_F( VByteBuffer_Test, starts_ends_with )
 
 TEST_F( VByteBuffer_Test, text )
 {
-    EXPECT_EQ( vbyte_buffer("12345").to_int(), 12345 );
-    EXPECT_EQ( vbyte_buffer("123456").to_uint(), 123456 );
+    EXPECT_EQ( VByteBuffer("12345").to_int(), 12345 );
+    EXPECT_EQ( VByteBuffer("123456").to_uint(), 123456 );
 
-    EXPECT_DOUBLE_EQ( vbyte_buffer("123.45").to_double(), 123.45 );
-    EXPECT_FLOAT_EQ( vbyte_buffer("123.456").to_double(), 123.456f );
+    EXPECT_DOUBLE_EQ( VByteBuffer("123.45").to_double(), 123.45 );
+    EXPECT_FLOAT_EQ( VByteBuffer("123.456").to_double(), 123.456f );
 
-    EXPECT_EQ( vbyte_buffer("0123456789012345").to_long(), 123456789012345l );
-    EXPECT_EQ( vbyte_buffer("012345678901234567 ").to_ulong(), 12345678901234567ul);
+    EXPECT_EQ( VByteBuffer("0123456789012345").to_long(), 123456789012345l );
+    EXPECT_EQ( VByteBuffer("012345678901234567 ").to_ulong(), 12345678901234567ul);
 }
 
 //=======================================================================================
@@ -174,54 +173,54 @@ TEST_F( VByteBuffer_Test, text )
 TEST_F( VByteBuffer_Test, splitters )
 {
     //------------------------------------------------------------------
-    auto must = vbyte_buffer::vector{};
-    auto vec  = vbyte_buffer("").split('|');
+    auto must = VByteBuffer::vector{};
+    auto vec  = VByteBuffer("").split('|');
     EXPECT_EQ( vec, must );
-    vec  = vbyte_buffer("").split_by_spaces();
+    vec  = VByteBuffer("").split_by_spaces();
     EXPECT_EQ( vec, must );
     //------------------------------------------------------------------
-    must = vbyte_buffer::vector{ vbyte_buffer() };
-    vec  = vbyte_buffer("|").split('|');
+    must = VByteBuffer::vector{ VByteBuffer() };
+    vec  = VByteBuffer("|").split('|');
     EXPECT_EQ( vec, must );
 
-    must = vbyte_buffer::vector{ vbyte_buffer(""),vbyte_buffer("") };
-    vec  = vbyte_buffer("||").split('|');
+    must = VByteBuffer::vector{ VByteBuffer(""),VByteBuffer("") };
+    vec  = VByteBuffer("||").split('|');
     EXPECT_EQ( vec, must );
 
     must.clear();
-    vec  = vbyte_buffer(" ").split_by_spaces();
-    EXPECT_EQ( vec, vbyte_buffer::vector{} );
+    vec  = VByteBuffer(" ").split_by_spaces();
+    EXPECT_EQ( vec, VByteBuffer::vector{} );
 
-    vec  = vbyte_buffer("   \t  \r  \n  \f  ").split_by_spaces();
+    vec  = VByteBuffer("   \t  \r  \n  \f  ").split_by_spaces();
     EXPECT_EQ( vec, must );
     //------------------------------------------------------------------
-    vec  = vbyte_buffer("|1|2||345|").split('|');
-    must = vbyte_buffer::vector
+    vec  = VByteBuffer("|1|2||345|").split('|');
+    must = VByteBuffer::vector
         {
-            vbyte_buffer(""),
-            vbyte_buffer("1"),
-            vbyte_buffer("2"),
-            vbyte_buffer(""),
-            vbyte_buffer("345")
+            VByteBuffer(""),
+            VByteBuffer("1"),
+            VByteBuffer("2"),
+            VByteBuffer(""),
+            VByteBuffer("345")
             // has not last empty value.
         };
     EXPECT_EQ( vec, must );
     //------------------------------------------------------------------
     {
-        vbyte_buffer bbt{"\t\n \r\f  12345  \n\n\n  \t \r"};
+        VByteBuffer bbt{"\t\n \r\f  12345  \n\n\n  \t \r"};
         bbt.trim_spaces();
         EXPECT_EQ( bbt.str(), "12345" );
     }
     {
-        vbyte_buffer bbt{"\t\n \r\f  12345  \n\n\n  \t \r"};
+        VByteBuffer bbt{"\t\n \r\f  12345  \n\n\n  \t \r"};
         EXPECT_EQ( bbt.trim_spaces().str(), "12345" );
     }
     //------------------------------------------------------------------
-    vec = vbyte_buffer("123 \t 456 ").split_by_spaces();
-    must = vbyte_buffer::vector
+    vec = VByteBuffer("123 \t 456 ").split_by_spaces();
+    must = VByteBuffer::vector
         {
-            vbyte_buffer("123"),
-            vbyte_buffer("456"),
+            VByteBuffer("123"),
+            VByteBuffer("456"),
         };
     EXPECT_EQ( vec, must );
     //------------------------------------------------------------------
@@ -231,15 +230,15 @@ TEST_F( VByteBuffer_Test, splitters )
 
 TEST_F( VByteBuffer_Test, hex )
 {
-    auto abra = vbyte_buffer::from_hex( "Abracadabra" ).to_Hex();
+    auto abra = VByteBuffer::from_hex( "Abracadabra" ).to_Hex();
     EXPECT_EQ( abra.str(), "0A BA CA DA BA" );
 
     //При нечетном количестве шестнадцатеричных символов, считается, что первый байт
     //обозначен одним символом:
-    auto odd_syms = vbyte_buffer::from_hex("123").to_Hex();
+    auto odd_syms = VByteBuffer::from_hex("123").to_Hex();
     EXPECT_EQ( odd_syms.str(), "01 23" );
 
-    vbyte_buffer test;
+    VByteBuffer test;
     test.append( char(0x05) );
     test.append( char(0x0A) );
     test.append( char(0x1B) );
@@ -268,7 +267,7 @@ TEST_F( VByteBuffer_Test, append_LE_BE )
     int32_t  i32    = 0x12345678;
     uint16_t u16    = 0xABCD;
 
-    vbyte_buffer be, le;
+    VByteBuffer be, le;
 
     be.append_BE(i32);
     be.append(center);
@@ -294,7 +293,7 @@ TEST_F( VByteBuffer_Test, simple_view_1 )
     const float    f    = 123.45f;
     const double   d    = 6789.1234456;
 
-    vbyte_buffer buf;
+    VByteBuffer buf;
 
     buf.append( s );
     buf.append_BE( i32 );
@@ -338,13 +337,13 @@ TEST_F( VByteBuffer_Test, simple_view_omit )
 {
     auto str = "1234";
     {
-        vbyte_buffer_view b( str, 4 );
+        VByteBufferView b( str, 4 );
         b.omit( 2 );
         EXPECT_EQ( b.remained(), 2 );
         EXPECT_EQ( b.show_tail().str(), "34" );
     }
     {
-        vbyte_buffer_view b( str, 4 );
+        VByteBufferView b( str, 4 );
         b.omit( 200000 ); // не должно сломаться.
         EXPECT_EQ( b.remained(), 0 );
         EXPECT_EQ( b.show_tail().str(), "" );
@@ -354,7 +353,7 @@ TEST_F( VByteBuffer_Test, simple_view_omit )
 
 TEST_F( VByteBuffer_Test, datas )
 {
-    vbyte_buffer buf;
+    VByteBuffer buf;
     buf.append_LE(42);
 
     auto c1 = buf.data();
@@ -374,8 +373,8 @@ TEST_F( VByteBuffer_Test, datas )
 
 TEST_F( VByteBuffer_Test, pluses )
 {
-    vbyte_buffer b1("2+");
-    vbyte_buffer b2("2=4");
+    VByteBuffer b1("2+");
+    VByteBuffer b2("2=4");
 
     auto sum = b1 + b2;
     b1 += b2;
@@ -386,7 +385,7 @@ TEST_F( VByteBuffer_Test, pluses )
 
 TEST_F( VByteBuffer_Test, implicit_ctor )
 {
-    auto l = [](vbyte_buffer){};
+    auto l = [](VByteBuffer){};
 
     //  Тест что можно передавать без явного преобразования.
     l("Hello");
@@ -395,8 +394,8 @@ TEST_F( VByteBuffer_Test, implicit_ctor )
 
 TEST_F( VByteBuffer_Test, empty )
 {
-    vbyte_buffer empty;
-    vbyte_buffer not_empty( "Hello" );
+    VByteBuffer empty;
+    VByteBuffer not_empty( "Hello" );
 
     EXPECT_TRUE  ( empty.empty()     );
     EXPECT_FALSE ( not_empty.empty() );

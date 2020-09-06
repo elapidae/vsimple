@@ -1,132 +1,145 @@
+/*! \file vbyte_buffer_view.h
+ * \authors Alexander Gromtsev
+ * \date December 2019
+ */
+
+//=======================================================================================
+
 #ifndef VBYTE_BUFFER_VIEW_H
 #define VBYTE_BUFFER_VIEW_H
+
+//=======================================================================================
 
 #include "vbyte_buffer.h"
 
 //=======================================================================================
-class vbyte_buffer_view
+class VByteBufferView
 {
 public:
+
+    //! \details A view constructors that looks at buf of length len.
+    VByteBufferView( const char* buf,          const size_t len ) noexcept;
+    VByteBufferView( const signed char* buf,   const size_t len ) noexcept;
+    VByteBufferView( const unsigned char* buf, const size_t len ) noexcept;
+
     //-----------------------------------------------------------------------------------
 
-    // Конструктор view, который смотрит на буфер buf длиной len
-    vbyte_buffer_view( const char* buf,          size_t len )   noexcept;
-    vbyte_buffer_view( const signed char* buf,   size_t len )   noexcept;
-    vbyte_buffer_view( const unsigned char* buf, size_t len )   noexcept;
+    //! Direct memory access of the buffer, for convenience, but be careful.
+    const char    * data()  const noexcept;
+    const int8_t  * sdata() const noexcept;
+    const uint8_t * udata() const noexcept;
 
-    //-----------------------------------------------------------------------------------
-
-    //  Прямой доступ к памяти буффера, для удобства, но будьте осторожны.
-    const char*    data()  const noexcept;
-    const int8_t*  sdata() const noexcept;
-    const uint8_t* udata() const noexcept;
-
-    // Сколько элементов буффера осталось впереди
+    //! The number of buffer elements left in front.
     size_t remained() const noexcept;
 
-    // Закончился ли просматриваемый буфер
-    bool   finished() const noexcept;
+    //! If the buffer being watched has run out.
+    bool finished() const noexcept;
 
-    // Пропустить некоторое количество
-    void omit( size_t count );
+    //! Skip some elements.
+    void omit( const size_t count );
 
     //-----------------------------------------------------------------------------------
 
-    // Отобразить следующий элемент в формате Little Endian
+    //! Display next item in Little Endian format.
     template<typename T> T show_LE()  const;
 
-    // Отобразить следующий элемент в формате Big Endian
+    //! Display next item in Big Endian format.
     template<typename T> T show_BE()  const;
 
-    // Отобразить sz следующих элементов буффера в виде строки
-    std::string  show_string ( size_t sz ) const;
+    //! Display the sz of the following buffer elements as a string.
+    std::string show_string ( const size_t sz ) const;
 
-    // Отобразить sz следующих элементов буффера
-    vbyte_buffer show_buffer ( size_t sz ) const;
+    //! Display the sz of the following buffer elements.
+    VByteBuffer show_buffer ( const size_t sz ) const;
 
-    // Просмотр оставшейся части
-    vbyte_buffer show_tail() const;
+    //! View the rest of.
+    VByteBuffer show_tail() const;
 
     //-----------------------------------------------------------------------------------
 
-    // Извлечь из буфера следующий элемент в формате Little Endian
+    //! Retrieve the next element from the clipboard in Little Endian format.
     template<typename T> T LE();
 
-    // Извлечь из буфера следующий элемент в формате Big Endian
+    //! Extract the next element from the buffer in Big Endian format.
     template<typename T> T BE();
 
-    // Извлечь из буфера строку размера sz
-    std::string  string ( size_t sz );
+    //! Extract sz size string from buffer.
+    std::string string ( const size_t sz );
 
-    // Извлечь из буфера буфер размера sz
-    vbyte_buffer buffer ( size_t sz );
+    //! Extract buffer of size sz from buffer.
+    VByteBuffer buffer ( const size_t sz );
 
-    // Извлечь оставшуюся часть
-    vbyte_buffer tail();
-
-    //-----------------------------------------------------------------------------------
-
-    char     show_ch()        const         { return show_LE<char>();       }
-    int8_t   show_i8()        const         { return show_LE<int8_t>();     }
-    uint8_t  show_u8()        const         { return show_LE<uint8_t>();    }
-
-    int16_t  show_i16_LE()    const         { return show_LE<int16_t>();    }
-    int16_t  show_i16_BE()    const         { return show_BE<int16_t>();    }
-    uint16_t show_u16_LE()    const         { return show_LE<uint16_t>();   }
-    uint16_t show_u16_BE()    const         { return show_BE<uint16_t>();   }
-
-    int32_t  show_i32_LE()    const         { return show_LE<int32_t>();    }
-    int32_t  show_i32_BE()    const         { return show_BE<int32_t>();    }
-    uint32_t show_u32_LE()    const         { return show_LE<uint32_t>();   }
-    uint32_t show_u32_BE()    const         { return show_BE<uint32_t>();   }
-
-    int64_t  show_i64_LE()    const         { return show_LE<int64_t>();    }
-    int64_t  show_i64_BE()    const         { return show_BE<int64_t>();    }
-    uint64_t show_u64_LE()    const         { return show_LE<uint64_t>();   }
-    uint64_t show_u64_BE()    const         { return show_BE<uint64_t>();   }
-
-
-    float    show_float_LE()  const         { return show_LE<float>();      }
-    float    show_float_BE()  const         { return show_BE<float>();      }
-
-    double   show_double_LE() const         { return show_LE<double>();     }
-    double   show_double_BE() const         { return show_BE<double>();     }
+    //! Extract the rest.
+    VByteBuffer tail();
 
     //-----------------------------------------------------------------------------------
 
-    char     ch()                           { return LE<char>();            }
-    int8_t   i8()                           { return LE<int8_t>();          }
-    uint8_t  u8()                           { return LE<uint8_t>();         }
+    char show_ch() const;
 
-    int16_t  i16_LE()                       { return LE<int16_t>();         }
-    int16_t  i16_BE()                       { return BE<int16_t>();         }
-    uint16_t u16_LE()                       { return LE<uint16_t>();        }
-    uint16_t u16_BE()                       { return BE<uint16_t>();        }
+    int8_t   show_i8() const;
+    uint8_t  show_u8() const;
 
-    int32_t  i32_LE()                       { return LE<int32_t>();         }
-    int32_t  i32_BE()                       { return BE<int32_t>();         }
-    uint32_t u32_LE()                       { return LE<uint32_t>();        }
-    uint32_t u32_BE()                       { return BE<uint32_t>();        }
+    int16_t  show_i16_LE() const;
+    int16_t  show_i16_BE() const;
+    uint16_t show_u16_LE() const;
+    uint16_t show_u16_BE() const;
 
-    int64_t  i64_LE()                       { return LE<int64_t>();         }
-    int64_t  i64_BE()                       { return BE<int64_t>();         }
-    uint64_t u64_LE()                       { return LE<uint64_t>();        }
-    uint64_t u64_BE()                       { return BE<uint64_t>();        }
+    int32_t  show_i32_LE() const;
+    int32_t  show_i32_BE() const;
+    uint32_t show_u32_LE() const;
+    uint32_t show_u32_BE() const;
 
-    float    float_LE()                     { return LE<float>();           }
-    float    float_BE()                     { return BE<float>();           }
+    int64_t  show_i64_LE() const;
+    int64_t  show_i64_BE() const;
+    uint64_t show_u64_LE() const;
+    uint64_t show_u64_BE() const;
 
-    double   double_LE()                    { return LE<double>();          }
-    double   double_BE()                    { return BE<double>();          }
+    float    show_float_LE() const;
+    float    show_float_BE() const;
+
+    double   show_double_LE() const;
+    double   show_double_BE() const;
+
+    //-----------------------------------------------------------------------------------
+
+    char ch();
+
+    int8_t   i8();
+    uint8_t  u8();
+
+    int16_t  i16_LE();
+    int16_t  i16_BE();
+    uint16_t u16_LE();
+    uint16_t u16_BE();
+
+    int32_t  i32_LE();
+    int32_t  i32_BE();
+    uint32_t u32_LE();
+    uint32_t u32_BE();
+
+    int64_t  i64_LE();
+    int64_t  i64_BE();
+    uint64_t u64_LE();
+    uint64_t u64_BE();
+
+    float    float_LE();
+    float    float_BE();
+
+    double   double_LE();
+    double   double_BE();
 
     //-----------------------------------------------------------------------------------
 
 private:
-    const char *_buffer;
+
+    const char* _buffer;
     size_t      _remained;
+
+    //-----------------------------------------------------------------------------------
 
     template<typename T> T _show() const;
     template<typename T> T _extract();
+
 };
 //=======================================================================================
 
@@ -135,7 +148,7 @@ private:
 //      Implementation
 //=======================================================================================
 template<typename T>
-T vbyte_buffer_view::_show() const
+T VByteBufferView::_show() const
 {
     if ( _remained < sizeof(T) )
         throw std::out_of_range( "vbyte_buffer_view: not enough data" );
@@ -148,7 +161,7 @@ T vbyte_buffer_view::_show() const
 }
 //=======================================================================================
 template<typename T>
-T vbyte_buffer_view::_extract()
+T VByteBufferView::_extract()
 {
     auto res = _show<T>();
 
@@ -159,7 +172,7 @@ T vbyte_buffer_view::_extract()
 }
 //=======================================================================================
 template<typename T>
-T vbyte_buffer_view::show_LE() const
+T VByteBufferView::show_LE() const
 {
     auto res = _show<T>();
 
@@ -171,19 +184,19 @@ T vbyte_buffer_view::show_LE() const
 }
 //=======================================================================================
 template<typename T>
-T vbyte_buffer_view::show_BE() const
+T VByteBufferView::show_BE() const
 {
     auto res = _show<T>();
 
     #if BYTE_ORDER == LITTLE_ENDIAN
-        res = vbyte_buffer::reverse_T( res );
+        res = VByteBuffer::reverse_T( res );
     #endif
 
     return res;
 }
 //=======================================================================================
 template<typename T>
-T vbyte_buffer_view::LE()
+T VByteBufferView::LE()
 {
     auto res = _extract<T>();
 
@@ -195,12 +208,12 @@ T vbyte_buffer_view::LE()
 }
 //=======================================================================================
 template<typename T>
-T vbyte_buffer_view::BE()
+T VByteBufferView::BE()
 {
     auto res = _extract<T>();
 
     #if BYTE_ORDER == LITTLE_ENDIAN
-        res = vbyte_buffer::reverse_T( res );
+        res = VByteBuffer::reverse_T( res );
     #endif
 
     return res;

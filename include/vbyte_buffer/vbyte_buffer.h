@@ -1,192 +1,219 @@
+/*! \file vbyte_buffer_view.h
+ *
+ * BYTE BUFFER FOR COMPOSING AND READING BINARY DATA, but with text buns.
+ *
+ * Read the API!
+ *
+ * The class does not have the task of providing a comprehensive interface for working with strings
+ * (lesson from last time, VString works well, but heavy).
+ *
+ * The main task: compilation of data in binary protocols, but so that twice
+ * get up, made a group of methods for processing text data.
+ *
+ * \authors Alexander Gromtsev
+ * \date December 2019
+ */
+
+//=======================================================================================
+
 #ifndef VBYTE_BUFFER_H
 #define VBYTE_BUFFER_H
 
 //=======================================================================================
-/*  vbyte_buffer            2019-11-22  by elapidae
- *
- *  БАЙТОВЫЙ БУФФЕР ДЛЯ СОСТАВЛЕНИЯ И ЧТЕНИЯ БИНАРНЫХ ДАННЫХ, но с текстовыми плюшками.
- *
- *  Читайте API!
- *
- *  У класса нету задачи предоставить всеобъемлющий интерфейс для работы со строками
- *  (урок с прошлого раза, VString работает хорошо, но тяжелая).
- *
- *  Главная задача: составление данных в бинарных протоколах, но, чтобы два раза не
- *  вставать, сделана группа методов для обработки текстовых данных.
-*/
-//=======================================================================================
+
+#include "vcompiler_traits.h"
 
 #include <string>
 #include <vector>
 #include <sstream>
 #include <stdexcept>
 
-#include "vcompiler_traits.h"
-
 //=======================================================================================
-class vbyte_buffer_view;
+class VByteBufferView;
 //=======================================================================================
-class vbyte_buffer
+class VByteBuffer
 {
 public:
+
+    using vector = std::vector<VByteBuffer>;
+
     //-----------------------------------------------------------------------------------
 
-    using vector = std::vector<vbyte_buffer>;
+    VByteBuffer();
+    VByteBuffer( std::string seed );
+    VByteBuffer( const char* seed );
 
     //-----------------------------------------------------------------------------------
 
-    vbyte_buffer();
-    vbyte_buffer( std::string seed );
-    vbyte_buffer( const char* seed );
+    bool operator == ( const VByteBuffer& rhs ) const noexcept;
+    bool operator != ( const VByteBuffer& rhs ) const noexcept;
 
-    // Возврат буфера в виде строки
-    const std::string& str() const noexcept;
+    VByteBuffer & operator += ( const VByteBuffer& rhs );
 
-    // Неявное преобразование vbyte_buffer к std::string
+    //-----------------------------------------------------------------------------------
+
+    //! Return buffer as string.
+    const std::string & str() const noexcept;
+
+    //! Implicit conversion of VByteBuffer to std::string.
     operator const std::string&() const noexcept;
 
-    size_t  size()  const noexcept;
-    bool    empty() const noexcept;
+    size_t size()  const noexcept;
+    bool   empty() const noexcept;
 
-    //  Прямой доступ к памяти буффера, для удобства, но будьте осторожны.
-    const char*    data()  const noexcept;
-    const int8_t*  sdata() const noexcept;
-    const uint8_t* udata() const noexcept;
+    //! Direct memory access of the buffer, for convenience, but be careful.
+    const char    * data()  const noexcept;
+    const int8_t  * sdata() const noexcept;
+    const uint8_t * udata() const noexcept;
 
-    //  NB! Ни в коем случае не изменяйте буффер пока пользуетесь view!
-    vbyte_buffer_view view() const;
+    //! NB! Never change the buffer while using the view!
+    VByteBufferView view() const;
 
-    // Очистка буфера
+    //! Clearing the buffer.
     void clear();
-
-    bool operator == ( const vbyte_buffer& rhs ) const noexcept;
-    bool operator != ( const vbyte_buffer& rhs ) const noexcept;
-
-    vbyte_buffer& operator += ( const vbyte_buffer& rhs );
 
     //-----------------------------------------------------------------------------------
 
-    //  Группа основных методов: append
-    //  Append Little Endian
+    //! Group of basic methods: append
+
+    //! Append Little Endian
     template<typename T>
     typename std::enable_if<std::is_arithmetic<T>::value, void>::type
     append_LE( T val );
 
-    //  Append Big Endian
+    //! Append Big Endian
     template<typename T>
     typename std::enable_if<std::is_arithmetic<T>::value, void>::type
     append_BE( T val );
 
-    void append( unsigned char val ); //  однобайтовые могут быть добавлены как есть.
-    void append( signed char   val ); //
-    void append( char          val ); //
-
-    void append( const std::string& val );  //  строки и их аналоги
-    void append( const char* val );         //
-
-    //-----------------------------------------------------------------------------------
-
-    //  Отрезать count байт с разных сторон.
-    //  Исключения не бросаются, если размер будет больше, буфер очистится.
-    void chop_front ( size_t count );
-    void chop_back  ( size_t count );
-
-    //  NB! Если count будет больше текущего размера, бросится
-    //  исключение std::length_error, потому что нечем заполнять.
-    void resize( size_t count );
-
-    // Возвратить count байт слева
-    vbyte_buffer left   ( size_t count ) const;
-
-    // Возвратить count байт справа
-    vbyte_buffer right  ( size_t count ) const;
-
-    // Возвратить count байт, начиная с позиции буфера pos
-    vbyte_buffer middle ( size_t pos, size_t count = std::string::npos ) const;
+    void append( unsigned char val );
+    void append( signed char   val );
+    void append( char          val );
+    void append( const std::string& val );
+    void append( const char* val );
 
     //-----------------------------------------------------------------------------------
 
-    // Проверка, начинается ли буфер данной строкой
+    //! Cut off count bytes from different sides.
+    //! Exceptions are not thrown, if the size is larger, the buffer will be cleared.
+    void chop_front ( const size_t count );
+    void chop_back  ( const size_t count );
+
+    //! NB! If count is larger than the current size, a std::length_error
+    //! will be thrown because there is nothing to fill.
+    void resize( const size_t count );
+
+    //! Return count bytes from the left.
+    VByteBuffer left ( const size_t count ) const;
+
+    //! Return count bytes from the right.
+    VByteBuffer right  ( const size_t count ) const;
+
+    //! Return count bytes starting at buffer position pos.
+    VByteBuffer middle ( const size_t pos,
+                         const size_t count = std::string::npos ) const;
+
+    //-----------------------------------------------------------------------------------
+
+    //! Checking if a buffer starts with a given line.
     bool starts_with ( const std::string& what ) const;
 
-    // Проверка, оканчивается ли буфер данной строкой
-    bool ends_with   ( const std::string& what ) const;
+    //! Checking if a buffer ends with a given string.
+    bool ends_with ( const std::string& what ) const;
 
     //-----------------------------------------------------------------------------------
 
     template <typename T> T to_any() const;
 
-    // Набор методов, преобразующих строку буфера в необходимый формат
+    //! A set of methods that convert the buffer string to the required format.
 
-    int         to_int()       const   { return to_any<int>();        }
-    uint        to_uint()      const   { return to_any<uint>();       }
-    long        to_long()      const   { return to_any<long>();       }
-    ulong       to_ulong()     const   { return to_any<ulong>();      }
-    float       to_float()     const   { return to_any<float>();      }
-    double      to_double()    const   { return to_any<double>();     }
+    int    to_int()    const; { return to_any<int>();        }
+uint   to_uint()   const; { return to_any<uint>();       }
+long   to_long()   const; { return to_any<long>();       }
+ulong  to_ulong()  const; { return to_any<ulong>();      }
+float  to_float()  const; { return to_any<float>();      }
+double to_double() const; { return to_any<double>();     }
 
-    int8_t      to_i8()        const   { return to_any<int8_t>();     }
-    uint8_t     to_u8()        const   { return to_any<uint8_t>();    }
+int8_t  to_i8() const;  { return to_any<int8_t>();     }
+uint8_t to_u8() const;  { return to_any<uint8_t>();    }
 
-    int16_t     to_i16()       const   { return to_any<int16_t>();    }
-    uint16_t    to_u16()       const   { return to_any<uint16_t>();   }
+int16_t  to_i16() const;   { return to_any<int16_t>();    }
+uint16_t to_u16() const;   { return to_any<uint16_t>();   }
 
-    int32_t     to_i32()       const   { return to_any<int32_t>();    }
-    uint32_t    to_u32()       const   { return to_any<uint32_t>();   }
+int32_t  to_i32() const;   { return to_any<int32_t>();    }
+uint32_t to_u32() const;   { return to_any<uint32_t>();   }
 
-    int64_t     to_i64()       const   { return to_any<int64_t>();    }
-    uint64_t    to_u64()       const   { return to_any<uint64_t>();   }
+int64_t  to_i64() const;   { return to_any<int64_t>();    }
+uint64_t to_u64() const;   { return to_any<uint64_t>();   }
 
-    //-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
 
-    // Нечувствительна к регистру, все символы, кроме набора hex игнорируются.
-    // NB! При нечетном количестве годных символов, считается, что первый -- ноль.
-    static  vbyte_buffer from_hex(  const std::string& src );
-            vbyte_buffer from_hex() const;
+//! Case insensitive, all characters except hex are ignored.
+//! NB! If the number of valid characters is odd, the first is considered to be zero.
+static  VByteBuffer from_hex(  const std::string& src );
+VByteBuffer from_hex() const;
 
-    vbyte_buffer tohex () const;                         // сплошным текстом, строчными.
-    vbyte_buffer toHex () const;                         // сплошным текстом, Заглавными.
-    vbyte_buffer to_hex( char separator = ' ' ) const;   // с разделителями, строчными.
-    vbyte_buffer to_Hex( char separator = ' ' ) const;   // с разделителями, Заглавными.
+//! Solid text, lowercase.
+VByteBuffer tohex () const;
 
-    static bool is_hex_symbol( char ch ) noexcept;
+//! Solid text, in capitals.
+VByteBuffer toHex () const;
 
-    //-----------------------------------------------------------------------------------
-    //  NB! Методы split не добавляют в конец пустое значение, если разделитель был
-    //  последним символом. Т.е. split("A|B", '|') == split("A|B|", '|')
-    //  А вот для пустой входной строки будет возвращен пустой вектор:
-    //      split("", '|') == vector{}, но split("|", '|') == vector{vbyte_buffer{}};
+//! With delimiters, lowercase.
+VByteBuffer to_hex( char separator = ' ' ) const;
 
-    //  split() режет по splitter, пустые тоже захватывает.
-    static vector split( const std::string& data, char splitter );
+//! With delimiters, in capitals.
+VByteBuffer to_Hex( char separator = ' ' ) const;
 
-    vector split( char splitter ) const;
+static bool is_hex_symbol( char ch ) noexcept;
 
-    //  Разрезает текст, используя разделители всех мастей (std::isspace).
-    //  Выкидывает все пустые, если так режем, по любому, работаем с текстом.
-    vector split_by_spaces() const;
+//-----------------------------------------------------------------------------------
+//! NB! The split methods do not append a null value to the end if the separator
+//! was the last character.
+//! \example split("A|B", '|') == split("A|B|", '|')
+//! But for an empty input string, an empty vector will be returned:
+//! \example split("", '|') == vector{},
+//! \example split("|", '|') == vector{vbyte_buffer{}};
 
-    //  Отсекает начальные и конечные пробелы.
-    vbyte_buffer& trim_spaces();
+//! split() cuts by splitter, it also captures empty ones.
+static vector split( const std::string& data, char splitter );
 
-    //-----------------------------------------------------------------------------------
+vector split( char splitter ) const;
 
-    // Выворачивает байты наизнанку, т.е. <LE> <-> <BE>.
-    template<typename T>
-    static typename std::enable_if<std::is_arithmetic<T>::value, T>::type
-    reverse_T( T src ) noexcept;
+//! Cuts text using all stripes separators (std :: isspace).
+//! Throws out all the empty ones, if we cut it like that, anyway, we work with text.
+vector split_by_spaces() const;
 
-    //-----------------------------------------------------------------------------------
+//! Strips off leading and trailing spaces.
+VByteBuffer & trim_spaces();
+
+//-----------------------------------------------------------------------------------
+
+//! Turns bytes inside out, i.e. <LE> <-> <BE>.
+template<typename T>
+static typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+reverse_T( T src ) noexcept;
+
+//-----------------------------------------------------------------------------------
 
 private:
-    std::string _buf;
 
-    template<typename T> void _append( const T& val );
-}; // vbyte_buffer
+std::string _buf;
+
+//-----------------------------------------------------------------------------------
+
+template<typename T> void _append( const T& val );
+
+};
 //=======================================================================================
-std::ostream& operator << ( std::ostream& os, const vbyte_buffer& buf );
 
-vbyte_buffer operator + ( const vbyte_buffer& lhs, const vbyte_buffer& rhs );
+
+//=======================================================================================
+
+std::ostream & operator << ( std::ostream& os, const VByteBuffer& buf );
+
+VByteBuffer operator + ( const VByteBuffer& lhs, const VByteBuffer& rhs );
+
 //=======================================================================================
 
 
@@ -196,7 +223,7 @@ vbyte_buffer operator + ( const vbyte_buffer& lhs, const vbyte_buffer& rhs );
 //  NB! Этот метод скопипащен из vcat::from_text.
 //  Пока что, волевым усилием принято держать этот код и там и там.
 template <typename T>
-T vbyte_buffer::to_any() const
+T VByteBuffer::to_any() const
 {
     std::istringstream ss( _buf );
     T res;
@@ -204,7 +231,7 @@ T vbyte_buffer::to_any() const
 
     if ( ss.fail() || ss.bad() )
         throw std::runtime_error( std::string("Error during interpretation text: '") +
-                _buf + "', in function " + __PRETTY_FUNCTION__ );
+                                  _buf + "', in function " + __PRETTY_FUNCTION__ );
 
     return res;
 }
@@ -212,11 +239,11 @@ T vbyte_buffer::to_any() const
 
 #pragma GCC diagnostic push
 #ifdef V_PRAGMA_GCC_KNOWS_IMPLICIT_FALLTHROUGH
-    #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 #endif
 template<typename T>
 typename std::enable_if< std::is_arithmetic<T>::value, T>::type
-vbyte_buffer::reverse_T( T val ) noexcept
+VByteBuffer::reverse_T( T val ) noexcept
 {
     static_assert ( sizeof(T) <= 8, "Cannot reverse values more than 8 bytes." );
 
@@ -225,10 +252,12 @@ vbyte_buffer::reverse_T( T val ) noexcept
 
     switch( tsize )
     {
-    case 8: std::swap( ch[3], ch[tsize-4] );
+        case 8: std::swap( ch[3], ch[tsize-4] );
             std::swap( ch[2], ch[tsize-3] );
-    case 4: std::swap( ch[1], ch[tsize-2] );
-    case 2: std::swap( ch[0], ch[tsize-1] );
+
+        case 4: std::swap( ch[1], ch[tsize-2] );
+
+        case 2: std::swap( ch[0], ch[tsize-1] );
     }
 
     return val;
@@ -236,7 +265,7 @@ vbyte_buffer::reverse_T( T val ) noexcept
 #pragma GCC diagnostic pop
 //=======================================================================================
 template<typename T>
-void vbyte_buffer::_append( const T& val )
+void VByteBuffer::_append( const T& val )
 {
     const char* ptr = static_cast<const char*>( static_cast<const void*>(&val) );
     _buf.append( ptr, sizeof(T) );
@@ -244,21 +273,21 @@ void vbyte_buffer::_append( const T& val )
 //=======================================================================================
 template<typename T>
 typename std::enable_if<std::is_arithmetic<T>::value, void>::type
-vbyte_buffer::append_LE( T val )
+VByteBuffer::append_LE( T val )
 {
-    #if BYTE_ORDER == BIG_ENDIAN
-        val = vbyte_buffer::reverse_T( val );
-    #endif
+#if BYTE_ORDER == BIG_ENDIAN
+    val = vbyte_buffer::reverse_T( val );
+#endif
     _append( val );
 }
 //=======================================================================================
 template<typename T>
 typename std::enable_if<std::is_arithmetic<T>::value, void>::type
-vbyte_buffer::append_BE( T val )
+VByteBuffer::append_BE( T val )
 {
-    #if BYTE_ORDER == LITTLE_ENDIAN
-        val = vbyte_buffer::reverse_T( val );
-    #endif
+#if BYTE_ORDER == LITTLE_ENDIAN
+    val = VByteBuffer::reverse_T( val );
+#endif
     _append( val );
 }
 //=======================================================================================
