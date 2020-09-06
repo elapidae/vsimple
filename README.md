@@ -90,13 +90,13 @@ To connect the **<vcomponent>** you need: <br>
 
 For cmake:
 ```
-	set( VLIBS_DIR "path_to/vlibs" )
+	set( VLIBS_DIR "path_to/VLib/include" )
 	include( "${VLIBS_DIR}/cmake/vcomponent.cmake" )
 ```
 
 For qmake:
 ```
-	VLIBS_DIR = $$PWD/path_to/vlibs
+	VLIBS_DIR = $$PWD/path_to/vlib/include
 	include( $$VLIBS_DIR/qmake/vcomponent.pri )
 ```
 
