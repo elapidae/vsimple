@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 2.8)
 
 #========================================================================================
 
-set( VLIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vlibs" )
+set( VLIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vsimples" )
 
 set( PROJECT vcat )
 add_subdirectory( "${VLIBS_DIR}/${PROJECT}/test_${PROJECT}/" )

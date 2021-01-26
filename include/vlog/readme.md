@@ -21,7 +21,7 @@ UPD 20-07-2018 Этот файл был написан раньше, часть 
 ## Процесс логгирования:
 
 NB! В папке логгера вложены примеры для qt и cmake
-(`vlibs/vlog/vlog_qt_examle` и `vlibs/vlog/vlog_cmake_example`).
+(`vsimples/vlog/vlog_qt_examle` и `vsimples/vlog/vlog_cmake_example`).
 
 ***
 

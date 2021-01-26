@@ -1,7 +1,7 @@
 #!/bin/bash
-rm -rf ../build-vlib*
-rm ../vlib.tar.gz
+rm -rf ../build-vsimple*
+rm ../vsimple.tar.gz
 rm -rf build/*
-rm -rf vlib.pro.*
+rm -rf vsimple.pro.*
 rm CMakeLists.txt.*
 rm -rf tests/build*

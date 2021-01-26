@@ -43,7 +43,7 @@
  *  что писать остается в реализациях _cat(...).
  *
  *  UPD: 2019-09-10 by elapidae:
- *   - перенесен в vlibs-2;
+ *   - перенесен в vsimples-2;
  *   - выкинуты ненужные enum _space, _nospace. Сами методы и так работают;
  *   - space()/nospace дополнены delimiter(char)/nodelimiter();
  *

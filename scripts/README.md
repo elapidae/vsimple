@@ -85,8 +85,8 @@ More [info](http://bb.niias/projects/TOOL/repos/cpp_codestyle/browse).
 
 | Argument| Description                | Example                      |
 |---------|----------------------------|------------------------------|
-| -c      | Path to configuration file | ../cfg/vlib.cfg |
-| -p      | Path to application PID    | /tmp/vlib       |
+| -c      | Path to configuration file | ../cfg/vsimple.cfg |
+| -p      | Path to application PID    | /tmp/vsimple       |
 | others  | -                          | -                            |
 
 ---
@@ -99,17 +99,17 @@ More [info](http://bb.niias/projects/TOOL/repos/cpp_codestyle/browse).
 
 - [rename.sh](rename.sh)
 
-    Renames all lines with vlib in the whole project to the new project naming according to the script input argument.
+    Renames all lines with vsimple in the whole project to the new project naming according to the script input argument.
 
 *Example:* <br>
 
-```./scripts/rename.sh vlib new_service preview``` - preview change files and lines.
+```./scripts/rename.sh vsimple new_service preview``` - preview change files and lines.
 
-```./scripts/rename.sh vlib new_service``` - recursively replace first argument to second in all files.
+```./scripts/rename.sh vsimple new_service``` - recursively replace first argument to second in all files.
 
 | Argument      | Description                        | Example            |
 |---------------|------------------------------------|--------------------|
-| №1            | The name to be replaced            | vlib  |
+| №1            | The name to be replaced            | vsimple  |
 | №2            | New service naming                 | new_service        |
 | №3 (optional) | File display mode for modification | --preview          |
 

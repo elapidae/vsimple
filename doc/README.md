@@ -11,7 +11,7 @@ Extended service documentation.
 Start doxygen code autodoc:<br/>
 
 ```
-cd vlib
+cd vsimple
 git checkout release
 ./scripts/doc.sh
 ```

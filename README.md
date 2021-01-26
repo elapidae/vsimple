@@ -1,4 +1,4 @@
-# vlib
+# vsimple
 
 [[License](./doc/LICENSE.md)]
 
@@ -96,7 +96,7 @@ For cmake:
 
 For qmake:
 ```
-	VLIBS_DIR = $$PWD/path_to/vlib/include
+	VLIBS_DIR = $$PWD/path_to/vsimple/include
 	include( $$VLIBS_DIR/qmake/vcomponent.pri )
 ```
 
@@ -124,7 +124,7 @@ You can find more scripts in [scripts/](./scripts).
 <a name="contributing"></a>
 ## 7. Contributing
 
-1. Fork it (<http://bb.niias/projects/TOOL/repos/vlib/browse>).
+1. Fork it (<http://bb.niias/projects/TOOL/repos/vsimple/browse>).
 2. Read [Readme](./README.md), [License](./doc/LICENSE.md), [Code of Conduct](./doc/CODE_OF_CONDUCT.md) and [Condributing Guidelines][contributing].
 3. Create your fix or feature branch (`git checkout -b feature/name`).
 4. Make changes according to [Condributing Guidelines][contributing].
