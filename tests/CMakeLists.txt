@@ -10,12 +10,12 @@ project( test_vsimple )
 
 set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
-#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
 
 #========================================================================================
 
 find_library( GTEST_LIBRARY NAMES libgtest.a PATHS ${EXT_LIBS_PATH} )
-#set( ${PROJECT_NAME} -lgtest -lgcov -fprofile-arcs )
+set( ${PROJECT_NAME} -lgtest -lgcov -fprofile-arcs )
 
 #========================================================================================
 

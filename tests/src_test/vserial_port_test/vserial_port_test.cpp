@@ -40,7 +40,7 @@ TEST_F( vserial_port_test, receive_data )
 {
     vterminal_options options( 460800 );
 
-    vserial_port port( "/dev/base-ubx" );
+//    vserial_port port( "/dev/base-ubx" );
 
 }
 //=======================================================================================
