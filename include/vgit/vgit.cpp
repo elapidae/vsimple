@@ -30,8 +30,8 @@
 #define VGIT_CURRECT_AUTHOR_EMAIL       VGIT_STR_FOR_EXTRACT(VGIT_AUTHOR_EMAIL_ELPD)
 #define VGIT_CURRECT_DATE               VGIT_STR_FOR_EXTRACT(VGIT_DATE_ELPD)
 
-#define VGIT_VLIBS_CURRECT_HASH         VGIT_STR_FOR_EXTRACT(VGIT_VLIBS_HASH_ELPD)
-#define VGIT_VLIBS_CURRECT_REVCOUNT     VGIT_STR_FOR_EXTRACT(VGIT_VLIBS_REVCOUNT_ELPD)
+#define VGIT_VSIMPLE_CURRECT_HASH     VGIT_STR_FOR_EXTRACT( VGIT_VSIMPLE_HASH_ELPD     )
+#define VGIT_VSIMPLE_CURRECT_REVCOUNT VGIT_STR_FOR_EXTRACT( VGIT_VSIMPLE_REVCOUNT_ELPD )
 //=======================================================================================
 
 
@@ -79,12 +79,12 @@ std::string vgit::vlibs_msg()
 //=======================================================================================
 std::string vgit::vlibs_hash()
 {
-    return VGIT_VLIBS_CURRECT_HASH;
+    return VGIT_VSIMPLE_CURRECT_HASH;
 }
 //=======================================================================================
 std::string vgit::vlibs_revcount()
 {
-    return VGIT_VLIBS_CURRECT_REVCOUNT;
+    return VGIT_VSIMPLE_CURRECT_REVCOUNT;
 }
 //=======================================================================================
 

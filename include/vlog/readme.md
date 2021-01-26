@@ -38,9 +38,9 @@ include( $$VSIMPLE_DIR/vlog/vfilelog.pri )    # Здесь файловый ло
 * cmake (заголовки и исходные файлы будут добавлены в пары переменных
 `V_HEADERS, V_SOURCES`.
 ```
-set( VLIBS_PATH, "path/to/this/repo" )
-include( "${VLIBS_PATH}/vlog/vlog.cmake" )
-include( "${VLIBS_PATH}/vlog/vfilelog.cmake" )
+set( VSIMPLE_PATH, "path/to/this/repo" )
+include( "${VSIMPLE_PATH}/vlog/vlog.cmake" )
+include( "${VSIMPLE_PATH}/vlog/vfilelog.cmake" )
 ```
 
 
@@ -128,7 +128,7 @@ NB! Добавлен модификатор vcat::space, vcat::nospace, вклю
 разом (делать селекционное отключение нет смысла, просто настраивайте один раз).
 
 Написаны исполнители логов в файлы с ротацией, для их использования надо подключить:
-`include( $$VLibs_Dir/vlog/vfilelog.pri )`
+`include( $$vsimples_Dir/vlog/vfilelog.pri )`
 Есть вариант логгирования в один файл, в файлы по типу сообщения;
 Есть исполнители в отдельном потоке, или без потокобезопасности.
 

@@ -1,21 +1,21 @@
 #========================================================================================
 
-project( test_vsimple )
-
-#========================================================================================
-
 cmake_minimum_required( VERSION 3.10 )
 
 #========================================================================================
 
-set( CMAKE_CXX_STANDARD 17 )
+project( test_vsimple )
+
+#========================================================================================
+
+set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
+#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
 
 #========================================================================================
 
 find_library( GTEST_LIBRARY NAMES libgtest.a PATHS ${EXT_LIBS_PATH} )
-set( ${PROJECT_NAME} -lgtest -lgcov -fprofile-arcs )
+#set( ${PROJECT_NAME} -lgtest -lgcov -fprofile-arcs )
 
 #========================================================================================
 
@@ -28,13 +28,11 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/src_test/src_test.cmake )
 add_executable( ${PROJECT_NAME}
     src_test/test.cpp
     ${SRC_TEST}
-    ${EXTERNAL}
-    ${GTEST_LIBRARY} )
+    )
 
 target_link_libraries( ${PROJECT_NAME}
     ${V_LIBRARIES}
-    ${GTEST_LIBRARY}
-    -ldl )
+    ${GTEST_LIBRARY} -lgtest )
 
 #========================================================================================
 
