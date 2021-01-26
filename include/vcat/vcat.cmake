@@ -14,20 +14,20 @@ if ( NOT  VCAT_INCLUDED )
 
     message( "=== include vcat... ===" )
 
-    include( "${VLIBS_DIR}/cmake/c++11.cmake" )
-    include( "${VLIBS_DIR}/cmake/vcompiler_traits.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/c++11.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vcompiler_traits.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vcat/" )
+    include_directories( "${VSIMPLE_DIR}/vcat/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcat/vcat.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vcat/vcat.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/vcat.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vcat/vcat.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcat/impl_vcat/vcat_iface.h" )
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcat/impl_vcat/tuple.h"      )
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcat/impl_vcat/containers.h" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/vcat_iface.h" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/tuple.h"      )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/containers.h" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcat/impl_vcat/vcat_qt_deploy.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vcat/impl_vcat/vcat_qt_deploy.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/vcat_qt_deploy.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vcat/impl_vcat/vcat_qt_deploy.cpp" )
 
     message( "=== vcat included ===" )
 endif()

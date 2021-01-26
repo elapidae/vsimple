@@ -1,1 +1,0 @@
-../vsignal/vsignal.pri

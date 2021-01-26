@@ -1,1 +1,0 @@
-../vtimer/vtimer.pri

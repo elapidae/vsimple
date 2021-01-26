@@ -13,18 +13,18 @@ isEmpty(qi_vsettings) {
     qi_vsettings = 1;
     isEmpty(qi_not_print_pri_messages): message("=== vsettings appended ===")
 
-    isEmpty(VLIBS_DIR): error("vsettings: Need VLIBS_DIR correct path.")
+    isEmpty(VSIMPLE_DIR): error("vsettings: Need VSIMPLE_DIR correct path.")
 
-    include( $$VLIBS_DIR/qmake/vlog.pri         )
-    include( $$VLIBS_DIR/qmake/vbyte_buffer.pri )
+    include( $$VSIMPLE_DIR/qmake/vlog.pri         )
+    include( $$VSIMPLE_DIR/qmake/vbyte_buffer.pri )
 
-    INCLUDEPATH += $$VLIBS_DIR/vsettings
+    INCLUDEPATH += $$VSIMPLE_DIR/vsettings
 
-    HEADERS     += $$VLIBS_DIR/vsettings/vsettings.h
-    SOURCES     += $$VLIBS_DIR/vsettings/vsettings.cpp
+    HEADERS     += $$VSIMPLE_DIR/vsettings/vsettings.h
+    SOURCES     += $$VSIMPLE_DIR/vsettings/vsettings.cpp
 
-    OTHER_FILES += $$VLIBS_DIR/vsettings/vsettings.cmake
-    OTHER_FILES += $$VLIBS_DIR/vsettings/README
+    OTHER_FILES += $$VSIMPLE_DIR/vsettings/vsettings.cmake
+    OTHER_FILES += $$VSIMPLE_DIR/vsettings/README
 }
 # vsettings.pri
 #========================================================================================

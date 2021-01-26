@@ -14,17 +14,17 @@ if ( NOT  VSERIAL_PORT_INCLUDED )
 
     message( "=== include vserial_port... ===" )
 
-    include( "${VLIBS_DIR}/cmake/vlog.cmake"    )
-    include( "${VLIBS_DIR}/cmake/vposix.cmake"  )
-    include( "${VLIBS_DIR}/cmake/vsignal.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vlog.cmake"    )
+    include( "${VSIMPLE_DIR}/cmake/vposix.cmake"  )
+    include( "${VSIMPLE_DIR}/cmake/vsignal.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vserial_port/" )
+    include_directories( "${VSIMPLE_DIR}/vserial_port/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vserial_port/vserial_port.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vserial_port/vserial_port.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vserial_port/vserial_port.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vserial_port/vserial_port.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vserial_port/vterminal_options.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vserial_port/vterminal_options.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vserial_port/vterminal_options.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vserial_port/vterminal_options.cpp" )
 
     message( "=== vserial_port included ===" )
 endif()

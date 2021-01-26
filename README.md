@@ -25,7 +25,7 @@ A repository of *C++11* solutions, assembled as micro-components.
 <a name="overview"></a>
 ## 1. Overview
 
-Each component provides a solution, or helps in solving a problem. Components combine a common approach to use, connect to QMake and CMake projects. All the code is delivered as is, no source codes need to be collected, but you need to connect the necessary components directly to the build system of the QMake / CMake project.
+Each component provides a solution, or helps in solving a problem. Components combine a common approach to use, connect to QMake and CMake projects. All the code is delivered as is, no source codes need to be collected, but you need to connect the necessary components directly to the build system of the CMake project.
 
 There are many subtleties and questions, this is a "seed" description that should be developed as far as possible, questions and comments are very welcome.
 
@@ -82,25 +82,20 @@ The installation procedures in Linux Ubuntu 16.04/14.04 32-bit LTS or Linux Mint
 <a name="usage"></a>
 ## 4. Usage
 
-The *qmake* & *cmake* folders are added to add **.pri & *.cmake* files there (with symlinks). In the same place, simple connections of some keys are created (for example, ```cmake/c++11.cmake``` ```qmake/pthread.pri``` ).
+The *cmake* folders are added to add *.cmake* files there (with symlinks). In the same place, simple connections of some keys are created (for example, ```cmake/c++11.cmake``` ).
 
 To connect the **<vcomponent>** you need: <br>
-1. Download the repository.<br>
-2. Register the lines in the project file:<br>
+1.Download the repository.<br>
+2.Register the lines in the project file:<br>
 
 For cmake:
 ```
-	set( VLIBS_DIR "path_to/VLib/include" )
-	include( "${VLIBS_DIR}/cmake/vcomponent.cmake" )
+	set( VSIMPLE_DIR "path_to/vsimple/include" )
+	include( "${VSIMPLE_DIR}/cmake/vcomponent.cmake" )
 ```
 
-For qmake:
-```
-	VLIBS_DIR = $$PWD/path_to/vsimple/include
-	include( $$VLIBS_DIR/qmake/vcomponent.pri )
-```
 
-3. Enjoy:
+3.Enjoy:
 ```
 	#include "vcomponent.h"
 	VComponent c;
@@ -148,6 +143,8 @@ Alexander Gromtsev:<br>
 
 Dmitrii Leliuhin:<br>
 - Email at - dleliuhin@gmail.com
+
+Nadejda Churikova:<br>
 
 ---
 

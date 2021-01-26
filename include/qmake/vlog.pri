@@ -1,1 +1,0 @@
-../vlog/vlog.pri

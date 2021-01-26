@@ -29,9 +29,9 @@ NB! В папке логгера вложены примеры для qt и cmak
 
 * qt :
 ```
-VLIBS_DIR = path/to/this/repo
-include( $$VLIBS_DIR/vlog/vlog.pri )        # Здесь сама система сбора логов.
-include( $$VLIBS_DIR/vlog/vfilelog.pri )    # Здесь файловый логгер "из коробки".
+VSIMPLE_DIR = path/to/this/repo
+include( $$VSIMPLE_DIR/vlog/vlog.pri )        # Здесь сама система сбора логов.
+include( $$VSIMPLE_DIR/vlog/vfilelog.pri )    # Здесь файловый логгер "из коробки".
                                             # Если включен, vlog.pri не нужен.
 ```
 

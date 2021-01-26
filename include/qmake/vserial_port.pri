@@ -1,1 +1,0 @@
-../vserial_port/vserial_port.pri

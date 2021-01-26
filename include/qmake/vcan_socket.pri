@@ -1,1 +1,0 @@
-../vcan_socket/vcan_socket.pri

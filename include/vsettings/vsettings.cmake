@@ -14,13 +14,13 @@ if ( NOT  VSETTINGS_INCLUDED )
 
     message( "=== include vsettings... ===" )
 
-    include( "${VLIBS_DIR}/cmake/vlog.cmake"         )
-    include( "${VLIBS_DIR}/cmake/vbyte_buffer.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vlog.cmake"         )
+    include( "${VSIMPLE_DIR}/cmake/vbyte_buffer.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vsettings/" )
+    include_directories( "${VSIMPLE_DIR}/vsettings/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vsettings/vsettings.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vsettings/vsettings.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vsettings/vsettings.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vsettings/vsettings.cpp" )
 
     message( "=== vsettings included ===" )
 endif()

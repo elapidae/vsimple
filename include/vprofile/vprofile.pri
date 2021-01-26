@@ -13,7 +13,7 @@ isEmpty(qi_vprofile) {
     qi_vprofile = 1;
     isEmpty(qi_not_print_pri_messages): message("=== vprofile appended ===")
 
-    isEmpty(VLIBS_DIR): error("vprofile: Need VLIBS_DIR correct path.")
+    isEmpty(VSIMPLE_DIR): error("vprofile: Need VSIMPLE_DIR correct path.")
 
     DEFINES += V_NEED_PROFILE
 
@@ -21,20 +21,20 @@ isEmpty(qi_vprofile) {
     #   after profile in your project:
     #DEFINES -= V_NEED_PROFILE
 
-    include( $$VLIBS_DIR/qmake/v_has_qt.pri )
+    include( $$VSIMPLE_DIR/qmake/v_has_qt.pri )
 
-    INCLUDEPATH += $$VLIBS_DIR/vprofile
+    INCLUDEPATH += $$VSIMPLE_DIR/vprofile
 
-    HEADERS     += $$VLIBS_DIR/vprofile/vprofile.h
-    SOURCES     += $$VLIBS_DIR/vprofile/vprofile.cpp
+    HEADERS     += $$VSIMPLE_DIR/vprofile/vprofile.h
+    SOURCES     += $$VSIMPLE_DIR/vprofile/vprofile.cpp
 
     contains(DEFINES, V_HAS_QT) {
-        include( $$VLIBS_DIR/qmake/vsettings.pri )
-        HEADERS += $$VLIBS_DIR/vprofile/vprofile_widget.h
-        SOURCES += $$VLIBS_DIR/vprofile/vprofile_widget.cpp
+        include( $$VSIMPLE_DIR/qmake/vsettings.pri )
+        HEADERS += $$VSIMPLE_DIR/vprofile/vprofile_widget.h
+        SOURCES += $$VSIMPLE_DIR/vprofile/vprofile_widget.cpp
     } # has qt
 
-    OTHER_FILES += $$VLIBS_DIR/vprofile/vprofile.cmake
+    OTHER_FILES += $$VSIMPLE_DIR/vprofile/vprofile.cmake
 }
 # vprofile.pri
 #========================================================================================

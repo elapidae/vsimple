@@ -14,10 +14,6 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
 
 #========================================================================================
 
-include( ${CMAKE_CURRENT_SOURCE_DIR}/../external/external.cmake )
-
-#========================================================================================
-
 find_library( GTEST_LIBRARY NAMES libgtest.a PATHS ${EXT_LIBS_PATH} )
 set( ${PROJECT_NAME} -lgtest -lgcov -fprofile-arcs )
 

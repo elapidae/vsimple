@@ -1,1 +1,0 @@
-../vchrono/vchrono.pri
