@@ -25,19 +25,6 @@
 #include <list>
 #include <map>
 
-
-#ifdef V_HAS_QT
-    #include <QString>
-    #include <QByteArray>
-    #include <QPoint>
-    #include <QPointF>
-
-    #ifdef V_HAS_QT_NETWORK
-        #include <QHostAddress>
-    #endif
-#endif // has qt
-
-
 //=======================================================================================
 //  For debugging...
 #define vdeb std::cout << basename(__FILE__) << ":" << __LINE__ << "==> "
@@ -178,25 +165,6 @@ TEST_F( vcat_test, bad_feature_dont_work_setfill )
     c.fill_char('=').field_width(10) << "alala";
     EXPECT_EQ( c.str(), "42 =====alala" );
 }
-
-//=======================================================================================
-
-#ifdef V_HAS_QT
-TEST_F( vcat_test, simple_qt_test )
-{
-    EXPECT_EQ( vcat(QString{"qstring"}).str(), "qstring" );
-    EXPECT_EQ( vcat(QByteArray{"qbytearray"}).str(), "qbytearray" );
-    EXPECT_EQ( vcat(QPoint{1,-2}).str(), "QPoint(1,-2)" );
-    EXPECT_EQ( vcat(QPointF{1.5,-2.5}).str(), "QPointF(1.5,-2.5)" );
-
-    #ifdef V_HAS_QT_NETWORK
-        EXPECT_EQ( vcat(QHostAddress("1.2.3.4")).str(),
-                        "QHostAddress(1.2.3.4)" );
-        EXPECT_EQ( vcat(QHostAddress("ffff::506:708")).str(),
-                        "QHostAddress(ffff::506:708)" );
-    #endif
-}
-#endif // V_HAS_QT
 
 //=======================================================================================
 
