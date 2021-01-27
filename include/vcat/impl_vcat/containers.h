@@ -68,11 +68,6 @@ namespace std
 }
 //=======================================================================================
 
-#ifdef V_HAS_QT
-    class QString;
-    class QByteArray;
-#endif // has qt
-
 //=======================================================================================
 namespace impl_vcat
 {
@@ -104,12 +99,7 @@ namespace impl_vcat
     {
         return _is_container<C>::value
                 && !std::is_base_of<std::string,C>::value
-                && !std::is_base_of<std::wstring,C>::value
-                #ifdef V_HAS_QT
-                    && !std::is_base_of<QString,C>::value
-                    && !std::is_base_of<QByteArray,C>::value
-                #endif // has qt
-               ;
+                && !std::is_base_of<std::wstring,C>::value;
     }
     //===================================================================================
 } // namespace impl_vcat

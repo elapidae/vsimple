@@ -26,9 +26,6 @@ if ( NOT  VCAT_INCLUDED )
     set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/tuple.h"      )
     set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/containers.h" )
 
-    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcat/impl_vcat/vcat_qt_deploy.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vcat/impl_vcat/vcat_qt_deploy.cpp" )
-
     message( "=== vcat included ===" )
 endif()
 # vcat.cmake

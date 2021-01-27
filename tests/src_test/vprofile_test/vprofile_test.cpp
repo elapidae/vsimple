@@ -14,65 +14,33 @@
 
 #include "gtest/gtest.h"
 #include "vlog.h"
-//#include "vprofile.h"
+#include "vprofile.h"
 
 using namespace std;
 
 //=======================================================================================
-//  EXPECT_TRUE
-//
-//  EXPECT_EQ
-//  EXPECT_FLOAT_EQ
-//  EXPECT_DOUBLE_EQ
-//
-//  EXPECT_THROW
-//  EXPECT_ANY_THROW
-//  EXPECT_NO_THROW
-//
 TEST_F( vprofile_test, _test_name )
 {
-//    V_PROFILE;
+    V_PROFILE;
     // type here
 }
 //=======================================================================================
 void s1()
 {
-//    V_PROFILE;
-//    sleep(1);
+    V_PROFILE;
+    sleep(1);
 }
 void s2()
 {
-//    V_PROFILE;
-//    sleep(1);
+    V_PROFILE;
+    sleep(1);
 }
 
-//#ifdef V_HAS_QT
-//    #include <QApplication>
-//    #include <QTimer>
-//    #include <vprofile_widget.h>
-//#endif
-
 //=======================================================================================
-//  Main, do not delete...
-//=======================================================================================
-//{
-//    V_PROFILE;
-//    s1();
-//    s2();
-
-//#ifdef V_HAS_QT
-//    vsettings s;
-//    s.from_ini_file( "sett.ini" );
-//    QApplication app(argc,argv);
-//    VProfile_Widget w;
-//    w.set_settings(s);
-//    w.show();
-//    QTimer t;
-//    t.start(2000);
-//    QObject::connect( &t, &QTimer::timeout, [&]{app.quit();} );
-//    app.exec();
-//    w.save_settings();
-//    s.to_ini_file( "sett.ini" );
-//#endif
-//}
+TEST_F( vprofile_test, double_test )
+{
+    V_PROFILE;
+    s1();
+    s2();
+}
 //=======================================================================================
