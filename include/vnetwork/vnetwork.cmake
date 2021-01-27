@@ -14,26 +14,26 @@ if ( NOT  VNETWORK_INCLUDED )
 
     message( "=== include vnetwork... ===" )
 
-    include( "${VLIBS_DIR}/cmake/vlog.cmake"    )
-    include( "${VLIBS_DIR}/cmake/vposix.cmake"  )
-    include( "${VLIBS_DIR}/cmake/vsignal.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vlog.cmake"    )
+    include( "${VSIMPLE_DIR}/cmake/vposix.cmake"  )
+    include( "${VSIMPLE_DIR}/cmake/vsignal.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vnetwork/" )
+    include_directories( "${VSIMPLE_DIR}/vnetwork/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vnetwork/vnetwork.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vnetwork/vnetwork.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vnetwork/vnetwork.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vnetwork/vnetwork.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vnetwork/vsocket_address.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vnetwork/vsocket_address.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vnetwork/vsocket_address.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vnetwork/vsocket_address.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vnetwork/vtcp_socket.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vnetwork/vtcp_socket.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vnetwork/vtcp_socket.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vnetwork/vtcp_socket.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vnetwork/vtcp_server.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vnetwork/vtcp_server.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vnetwork/vtcp_server.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vnetwork/vtcp_server.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vnetwork/vudp_socket.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vnetwork/vudp_socket.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vnetwork/vudp_socket.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vnetwork/vudp_socket.cpp" )
 
     message( "=== vnetwork included ===" )
 endif()

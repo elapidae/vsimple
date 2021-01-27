@@ -14,14 +14,14 @@ if ( NOT  vcan_socket_INCLUDED )
 
     message( "=== include vcan_socket... ===" )
 
-    include( "${VLIBS_DIR}/cmake/c++11.cmake" )
-    include( "${VLIBS_DIR}/cmake/vsignal.cmake" )
-    include( "${VLIBS_DIR}/cmake/vposix.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/c++11.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vsignal.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vposix.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vcan_socket/" )
+    include_directories( "${VSIMPLE_DIR}/vcan_socket/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcan_socket/vcan_socket.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vcan_socket/vcan_socket.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcan_socket/vcan_socket.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vcan_socket/vcan_socket.cpp" )
 
     message( "=== vcan_socket included ===" )
 endif()

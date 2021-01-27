@@ -20,10 +20,10 @@ if ( NOT  VPROFILE_INCLUDED )
     #   after profile in your project:
     #remove_definitions( -DV_NEED_PROFILE )
 
-    include_directories( "${VLIBS_DIR}/vprofile/" )
+    include_directories( "${VSIMPLE_DIR}/vprofile/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vprofile/vprofile.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vprofile/vprofile.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vprofile/vprofile.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vprofile/vprofile.cpp" )
 
     message( "=== vprofile included ===" )
 endif()

@@ -14,12 +14,12 @@ if ( NOT  VMACROSES_INCLUDED )
 
     message( "=== About include vcompiler_traits... ===" )
 
-    include( "${VLIBS_DIR}/cmake/c++11.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/c++11.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vcompiler_traits/")
+    include_directories( "${VSIMPLE_DIR}/vcompiler_traits/")
 
-    set(V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcompiler_traits/vcompiler_traits.h")
-    set(V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcompiler_traits/vvoid_type.h")
+    set(V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcompiler_traits/vcompiler_traits.h")
+    set(V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcompiler_traits/vvoid_type.h")
 
 
  message( "=== vcompiler_traits includede ===" )

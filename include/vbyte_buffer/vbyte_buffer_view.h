@@ -13,14 +13,14 @@
 #include "vbyte_buffer.h"
 
 //=======================================================================================
-class VByteBufferView
+class vbyte_buffer_view
 {
 public:
 
     //! \details A view constructors that looks at buf of length len.
-    VByteBufferView( const char* buf,          const size_t len ) noexcept;
-    VByteBufferView( const signed char* buf,   const size_t len ) noexcept;
-    VByteBufferView( const unsigned char* buf, const size_t len ) noexcept;
+    vbyte_buffer_view( const char* buf,          const size_t len ) noexcept;
+    vbyte_buffer_view( const signed char* buf,   const size_t len ) noexcept;
+    vbyte_buffer_view( const unsigned char* buf, const size_t len ) noexcept;
 
     //-----------------------------------------------------------------------------------
 
@@ -50,10 +50,10 @@ public:
     std::string show_string ( const size_t sz ) const;
 
     //! Display the sz of the following buffer elements.
-    VByteBuffer show_buffer ( const size_t sz ) const;
+    vbyte_buffer show_buffer ( const size_t sz ) const;
 
     //! View the rest of.
-    VByteBuffer show_tail() const;
+    vbyte_buffer show_tail() const;
 
     //-----------------------------------------------------------------------------------
 
@@ -67,10 +67,10 @@ public:
     std::string string ( const size_t sz );
 
     //! Extract buffer of size sz from buffer.
-    VByteBuffer buffer ( const size_t sz );
+    vbyte_buffer buffer ( const size_t sz );
 
     //! Extract the rest.
-    VByteBuffer tail();
+    vbyte_buffer tail();
 
     //-----------------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ private:
 //      Implementation
 //=======================================================================================
 template<typename T>
-T VByteBufferView::_show() const
+T vbyte_buffer_view::_show() const
 {
     if ( _remained < sizeof(T) )
         throw std::out_of_range( "vbyte_buffer_view: not enough data" );
@@ -161,7 +161,7 @@ T VByteBufferView::_show() const
 }
 //=======================================================================================
 template<typename T>
-T VByteBufferView::_extract()
+T vbyte_buffer_view::_extract()
 {
     auto res = _show<T>();
 
@@ -172,7 +172,7 @@ T VByteBufferView::_extract()
 }
 //=======================================================================================
 template<typename T>
-T VByteBufferView::show_LE() const
+T vbyte_buffer_view::show_LE() const
 {
     auto res = _show<T>();
 
@@ -184,19 +184,19 @@ T VByteBufferView::show_LE() const
 }
 //=======================================================================================
 template<typename T>
-T VByteBufferView::show_BE() const
+T vbyte_buffer_view::show_BE() const
 {
     auto res = _show<T>();
 
     #if BYTE_ORDER == LITTLE_ENDIAN
-        res = VByteBuffer::reverse_T( res );
+        res = vbyte_buffer::reverse_T( res );
     #endif
 
     return res;
 }
 //=======================================================================================
 template<typename T>
-T VByteBufferView::LE()
+T vbyte_buffer_view::LE()
 {
     auto res = _extract<T>();
 
@@ -208,12 +208,12 @@ T VByteBufferView::LE()
 }
 //=======================================================================================
 template<typename T>
-T VByteBufferView::BE()
+T vbyte_buffer_view::BE()
 {
     auto res = _extract<T>();
 
     #if BYTE_ORDER == LITTLE_ENDIAN
-        res = VByteBuffer::reverse_T( res );
+        res = vbyte_buffer::reverse_T( res );
     #endif
 
     return res;

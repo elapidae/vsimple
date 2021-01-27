@@ -14,15 +14,15 @@ if ( NOT  VBYTE_BUFFER_INCLUDED )
 
     message( "=== include vbyte_buffer... ===" )
 
-    include( "${VLIBS_DIR}/cmake/c++11.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/c++11.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vbyte_buffer/" )
+    include_directories( "${VSIMPLE_DIR}/vbyte_buffer/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vbyte_buffer/vbyte_buffer.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vbyte_buffer/vbyte_buffer.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vbyte_buffer/vbyte_buffer.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vbyte_buffer/vbyte_buffer.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vbyte_buffer/vbyte_buffer_view.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vbyte_buffer/vbyte_buffer_view.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vbyte_buffer/vbyte_buffer_view.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vbyte_buffer/vbyte_buffer_view.cpp" )
 
     message( "=== vbyte_buffer included ===" )
 endif()

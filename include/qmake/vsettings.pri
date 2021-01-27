@@ -1,1 +1,0 @@
-../vsettings/vsettings.pri

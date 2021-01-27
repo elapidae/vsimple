@@ -13,25 +13,25 @@ isEmpty(qi_vcat) {
     qi_vcat = 1;
     isEmpty(qi_not_print_pri_messages): message("=== vcat appended ===")
 
-    isEmpty(VLIBS_DIR): error("vcat: Need VLIBS_DIR correct path.")
+    isEmpty(VSIMPLE_DIR): error("vcat: Need VSIMPLE_DIR correct path.")
 
-    include( $$VLIBS_DIR/qmake/v_has_qt.pri )
-    include( $$VLIBS_DIR/qmake/vcompiler_traits.pri )
+    include( $$VSIMPLE_DIR/qmake/v_has_qt.pri )
+    include( $$VSIMPLE_DIR/qmake/vcompiler_traits.pri )
 
-    INCLUDEPATH += $$VLIBS_DIR/vcat
+    INCLUDEPATH += $$VSIMPLE_DIR/vcat
 
-    HEADERS     += $$VLIBS_DIR/vcat/vcat.h
-    SOURCES     += $$VLIBS_DIR/vcat/vcat.cpp
+    HEADERS     += $$VSIMPLE_DIR/vcat/vcat.h
+    SOURCES     += $$VSIMPLE_DIR/vcat/vcat.cpp
 
-    HEADERS     += $$VLIBS_DIR/vcat/impl_vcat/vcat_iface.h
-    HEADERS     += $$VLIBS_DIR/vcat/impl_vcat/tuple.h
-    HEADERS     += $$VLIBS_DIR/vcat/impl_vcat/containers.h
+    HEADERS     += $$VSIMPLE_DIR/vcat/impl_vcat/vcat_iface.h
+    HEADERS     += $$VSIMPLE_DIR/vcat/impl_vcat/tuple.h
+    HEADERS     += $$VSIMPLE_DIR/vcat/impl_vcat/containers.h
 
-    HEADERS     += $$VLIBS_DIR/vcat/impl_vcat/vcat_qt_deploy.h
-    SOURCES     += $$VLIBS_DIR/vcat/impl_vcat/vcat_qt_deploy.cpp
+    HEADERS     += $$VSIMPLE_DIR/vcat/impl_vcat/vcat_qt_deploy.h
+    SOURCES     += $$VSIMPLE_DIR/vcat/impl_vcat/vcat_qt_deploy.cpp
 
-    OTHER_FILES += $$VLIBS_DIR/vcat/README
-    OTHER_FILES += $$VLIBS_DIR/vcat/vcat.cmake
+    OTHER_FILES += $$VSIMPLE_DIR/vcat/README
+    OTHER_FILES += $$VSIMPLE_DIR/vcat/vcat.cmake
 }
 # vcat.pri
 #========================================================================================

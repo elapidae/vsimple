@@ -1,1 +1,0 @@
-../vbyte_buffer/vbyte_buffer.pri

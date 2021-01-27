@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-**  VLIBS codebase, NIIAS
+**  VSIMPLE codebase, NIIAS
 **
 **  Authors:
 **  Alexandre Gromtsev aka elapidae     elapidae@yandex.ru

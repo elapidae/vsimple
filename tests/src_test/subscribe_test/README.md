@@ -1,6 +1,0 @@
-# Subscribe tests
-
----
-
-
----

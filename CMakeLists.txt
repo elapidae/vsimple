@@ -1,59 +1,36 @@
 #========================================================================================
 
-project( vsimple )
-
-#========================================================================================
-
 cmake_minimum_required( VERSION 3.10 )
 
 #========================================================================================
 
-option( GUI FALSE )
-
-if ( GUI )
-    set( CMAKE_BUILD_TYPE "Debug" )
-else()
-    set( CMAKE_BUILD_TYPE "Release" )
-endif()
+project( vsimple )
 
 #========================================================================================
 
-option( V_DEVELOP FALSE )
-
-if ( V_DEVELOP )
-    add_definitions( -DV_DEVELOP )
-endif()
+set( CMAKE_BUILD_TYPE "Release" )
 
 #========================================================================================
 
-set( CMAKE_CXX_STANDARD 17 )
+set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
 #========================================================================================
 
-include( ${CMAKE_CURRENT_SOURCE_DIR}/external/external.cmake )
-
-#========================================================================================
-
 include_directories( ${CMAKE_SOURCE_DIR} )
 
-include( ${CMAKE_CURRENT_SOURCE_DIR}/cfg/cfg.cmake )
-include( ${CMAKE_CURRENT_SOURCE_DIR}/src/src.cmake )
+set( VSIMPLE_DIR ${CMAKE_CURRENT_LIST_DIR}/include )
 
 #========================================================================================
 
-add_executable( ${PROJECT_NAME}
-    src/main.cpp
-    ${CFG}
-    ${SRC}
-    ${EXTERNAL} )
+include( ${VSIMPLE_DIR}/cmake/all.cmake )
 
-target_link_libraries( ${PROJECT_NAME}
-    ${VTK_LIBRARIES}
-    ${PCL_LIBRARIES}
-    ${V_LIBRARIES}
-    -ldl )
+#========================================================================================
+
+add_library( ${PROJECT_NAME} SHARED ${V_HEADERS} ${V_SOURCES} )
+
+target_link_libraries( ${PROJECT_NAME} ${V_LIBRARIES} )
 
 #========================================================================================
 

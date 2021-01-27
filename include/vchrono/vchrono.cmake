@@ -14,22 +14,22 @@ if ( NOT  VCHRONO_INCLUDED )
 
     message( "=== about include vchrono... ===" )
 
-    include( "${VLIBS_DIR}/cmake/vcompiler_traits.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vcompiler_traits.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vchrono/" )
+    include_directories( "${VSIMPLE_DIR}/vchrono/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vchrono/vtime_point.h" )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vchrono/impl_vchrono/vtime_point.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vchrono/vtime_point.h" )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vchrono/impl_vchrono/vtime_point.cpp" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vchrono/vtime_meter.h" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vchrono/vtime_meter.h" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vchrono/impl_vchrono/time_point_base.h" )
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vchrono/impl_vchrono/time_meter.h" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vchrono/impl_vchrono/time_point_base.h" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vchrono/impl_vchrono/time_meter.h" )
 
     set( V_HEADERS ${V_HEADERS}
-                  "${VLIBS_DIR}/vchrono/impl_vchrono/human_readable_time.h" )
+                  "${VSIMPLE_DIR}/vchrono/impl_vchrono/human_readable_time.h" )
     set( V_SOURCES ${V_SOURCES}
-                  "${VLIBS_DIR}/vchrono/impl_vchrono/human_readable_time.cpp" )
+                  "${VSIMPLE_DIR}/vchrono/impl_vchrono/human_readable_time.cpp" )
 
     message( "=== vchrono included ===" )
 

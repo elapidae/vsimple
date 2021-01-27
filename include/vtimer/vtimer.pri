@@ -13,17 +13,17 @@ isEmpty(qi_vtimer) {
     qi_vtimer = 1;
     isEmpty(qi_not_print_pri_messages): message("=== vtimer appended ===")
 
-    isEmpty(VLIBS_DIR): error("vtimer: Need VLIBS_DIR correct path.")
+    isEmpty(VSIMPLE_DIR): error("vtimer: Need VSIMPLE_DIR correct path.")
 
-    include( $$VLIBS_DIR/qmake/vposix.pri  )
-    include( $$VLIBS_DIR/qmake/vsignal.pri )
+    include( $$VSIMPLE_DIR/qmake/vposix.pri  )
+    include( $$VSIMPLE_DIR/qmake/vsignal.pri )
 
-    INCLUDEPATH += $$VLIBS_DIR/vtimer
+    INCLUDEPATH += $$VSIMPLE_DIR/vtimer
 
-    HEADERS     += $$VLIBS_DIR/vtimer/vtimer.h
-    SOURCES     += $$VLIBS_DIR/vtimer/vtimer.cpp
+    HEADERS     += $$VSIMPLE_DIR/vtimer/vtimer.h
+    SOURCES     += $$VSIMPLE_DIR/vtimer/vtimer.cpp
 
-    OTHER_FILES += $$VLIBS_DIR/vtimer/vtimer.cmake
+    OTHER_FILES += $$VSIMPLE_DIR/vtimer/vtimer.cmake
 }
 # vtimer.pri
 #========================================================================================

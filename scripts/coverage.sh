@@ -13,7 +13,6 @@ cd $BUILD_PATH
 lcov --capture --directory . --output-file coverage.info
 lcov --remove coverage.info -o coverage.info \
 	"/usr*" \
-	"*src_test/*" \
-	"*external/*" 
+	"*src_test/*" 
 genhtml coverage.info --output-directory=$COVERAGE_PATH
 

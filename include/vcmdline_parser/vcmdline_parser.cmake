@@ -14,12 +14,12 @@ if ( NOT  vcmdline_parser_INCLUDED )
 
     message( "=== include vcmdline_parser... ===" )
 
-    include( "${VLIBS_DIR}/cmake/vcat.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/vcat.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vcmdline_parser/" )
+    include_directories( "${VSIMPLE_DIR}/vcmdline_parser/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vcmdline_parser/vcmdline_parser.h"   )
-    set( V_SOURCES ${V_SOURCES} "${VLIBS_DIR}/vcmdline_parser/vcmdline_parser.cpp" )
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vcmdline_parser/vcmdline_parser.h"   )
+    set( V_SOURCES ${V_SOURCES} "${VSIMPLE_DIR}/vcmdline_parser/vcmdline_parser.cpp" )
 
     message( "=== vcmdline_parser included ===" )
 endif()

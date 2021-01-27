@@ -13,31 +13,31 @@ isEmpty(qi_vnetwork) {
     qi_vnetwork = 1;
     isEmpty(qi_not_print_pri_messages): message("=== vnetwork appended ===")
 
-    isEmpty(VLIBS_DIR): error("vnetwork: Need VLIBS_DIR correct path.")
+    isEmpty(VSIMPLE_DIR): error("vnetwork: Need VSIMPLE_DIR correct path.")
 
-    include( $$VLIBS_DIR/qmake/vlog.pri    )
-    include( $$VLIBS_DIR/qmake/vposix.pri  )
-    include( $$VLIBS_DIR/qmake/vsignal.pri )
+    include( $$VSIMPLE_DIR/qmake/vlog.pri    )
+    include( $$VSIMPLE_DIR/qmake/vposix.pri  )
+    include( $$VSIMPLE_DIR/qmake/vsignal.pri )
 
-    INCLUDEPATH += $$VLIBS_DIR/vnetwork
+    INCLUDEPATH += $$VSIMPLE_DIR/vnetwork
 
-    HEADERS     += $$VLIBS_DIR/vnetwork/vnetwork.h
-    SOURCES     += $$VLIBS_DIR/vnetwork/vnetwork.cpp
+    HEADERS     += $$VSIMPLE_DIR/vnetwork/vnetwork.h
+    SOURCES     += $$VSIMPLE_DIR/vnetwork/vnetwork.cpp
 
-    HEADERS     += $$VLIBS_DIR/vnetwork/vsocket_address.h
-    SOURCES     += $$VLIBS_DIR/vnetwork/vsocket_address.cpp
+    HEADERS     += $$VSIMPLE_DIR/vnetwork/vsocket_address.h
+    SOURCES     += $$VSIMPLE_DIR/vnetwork/vsocket_address.cpp
 
-    HEADERS     += $$VLIBS_DIR/vnetwork/vtcp_socket.h
-    SOURCES     += $$VLIBS_DIR/vnetwork/vtcp_socket.cpp
+    HEADERS     += $$VSIMPLE_DIR/vnetwork/vtcp_socket.h
+    SOURCES     += $$VSIMPLE_DIR/vnetwork/vtcp_socket.cpp
 
-    HEADERS     += $$VLIBS_DIR/vnetwork/vtcp_server.h
-    SOURCES     += $$VLIBS_DIR/vnetwork/vtcp_server.cpp
+    HEADERS     += $$VSIMPLE_DIR/vnetwork/vtcp_server.h
+    SOURCES     += $$VSIMPLE_DIR/vnetwork/vtcp_server.cpp
 
-    HEADERS     += $$VLIBS_DIR/vnetwork/vudp_socket.h
-    SOURCES     += $$VLIBS_DIR/vnetwork/vudp_socket.cpp
+    HEADERS     += $$VSIMPLE_DIR/vnetwork/vudp_socket.h
+    SOURCES     += $$VSIMPLE_DIR/vnetwork/vudp_socket.cpp
 
-    OTHER_FILES += $$VLIBS_DIR/vnetwork/vnetwork.cmake
-    OTHER_FILES += $$VLIBS_DIR/vnetwork/README
+    OTHER_FILES += $$VSIMPLE_DIR/vnetwork/vnetwork.cmake
+    OTHER_FILES += $$VSIMPLE_DIR/vnetwork/README
 }
 # vnetwork.pri
 #========================================================================================

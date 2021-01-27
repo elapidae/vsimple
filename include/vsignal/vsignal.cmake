@@ -15,11 +15,11 @@ if ( NOT  VSIGNAL_INCLUDED )
 
     message( "=== About include vsignal... ===" )
 
-    include( "${VLIBS_DIR}/cmake/c++11.cmake" )
+    include( "${VSIMPLE_DIR}/cmake/c++11.cmake" )
 
-    include_directories( "${VLIBS_DIR}/vsignal/" )
+    include_directories( "${VSIMPLE_DIR}/vsignal/" )
 
-    set( V_HEADERS ${V_HEADERS} "${VLIBS_DIR}/vsignal/vsignal.h" ) 
+    set( V_HEADERS ${V_HEADERS} "${VSIMPLE_DIR}/vsignal/vsignal.h" ) 
 
     message( "=== vsignal included ===" )
 endif()

@@ -29,26 +29,26 @@
 #include <stdexcept>
 
 //=======================================================================================
-class VByteBufferView;
+class vbyte_buffer_view;
 //=======================================================================================
-class VByteBuffer
+class vbyte_buffer
 {
 public:
 
-    using vector = std::vector<VByteBuffer>;
+    using vector = std::vector<vbyte_buffer>;
 
     //-----------------------------------------------------------------------------------
 
-    VByteBuffer();
-    VByteBuffer( std::string seed );
-    VByteBuffer( const char* seed );
+    vbyte_buffer();
+    vbyte_buffer( std::string seed );
+    vbyte_buffer( const char* seed );
 
     //-----------------------------------------------------------------------------------
 
-    bool operator == ( const VByteBuffer& rhs ) const noexcept;
-    bool operator != ( const VByteBuffer& rhs ) const noexcept;
+    bool operator == ( const vbyte_buffer& rhs ) const noexcept;
+    bool operator != ( const vbyte_buffer& rhs ) const noexcept;
 
-    VByteBuffer & operator += ( const VByteBuffer& rhs );
+    vbyte_buffer & operator += ( const vbyte_buffer& rhs );
 
     //-----------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public:
     const uint8_t * udata() const noexcept;
 
     //! NB! Never change the buffer while using the view!
-    VByteBufferView view() const;
+    vbyte_buffer_view view() const;
 
     //! Clearing the buffer.
     void clear();
@@ -104,14 +104,14 @@ public:
     void resize( const size_t count );
 
     //! Return count bytes from the left.
-    VByteBuffer left ( const size_t count ) const;
+    vbyte_buffer left ( const size_t count ) const;
 
     //! Return count bytes from the right.
-    VByteBuffer right  ( const size_t count ) const;
+    vbyte_buffer right  ( const size_t count ) const;
 
     //! Return count bytes starting at buffer position pos.
-    VByteBuffer middle ( const size_t pos,
-                         const size_t count = std::string::npos ) const;
+    vbyte_buffer middle ( const size_t pos,
+                          const size_t count = std::string::npos ) const;
 
     //-----------------------------------------------------------------------------------
 
@@ -127,82 +127,82 @@ public:
 
     //! A set of methods that convert the buffer string to the required format.
 
-    int    to_int()    const; { return to_any<int>();        }
-uint   to_uint()   const; { return to_any<uint>();       }
-long   to_long()   const; { return to_any<long>();       }
-ulong  to_ulong()  const; { return to_any<ulong>();      }
-float  to_float()  const; { return to_any<float>();      }
-double to_double() const; { return to_any<double>();     }
+    int    to_int()    const { return to_any<int>();        }
+    uint   to_uint()   const { return to_any<uint>();       }
+    long   to_long()   const { return to_any<long>();       }
+    ulong  to_ulong()  const { return to_any<ulong>();      }
+    float  to_float()  const { return to_any<float>();      }
+    double to_double() const { return to_any<double>();     }
 
-int8_t  to_i8() const;  { return to_any<int8_t>();     }
-uint8_t to_u8() const;  { return to_any<uint8_t>();    }
+    int8_t  to_i8() const  { return to_any<int8_t>();     }
+    uint8_t to_u8() const  { return to_any<uint8_t>();    }
 
-int16_t  to_i16() const;   { return to_any<int16_t>();    }
-uint16_t to_u16() const;   { return to_any<uint16_t>();   }
+    int16_t  to_i16() const   { return to_any<int16_t>();    }
+    uint16_t to_u16() const   { return to_any<uint16_t>();   }
 
-int32_t  to_i32() const;   { return to_any<int32_t>();    }
-uint32_t to_u32() const;   { return to_any<uint32_t>();   }
+    int32_t  to_i32() const   { return to_any<int32_t>();    }
+    uint32_t to_u32() const   { return to_any<uint32_t>();   }
 
-int64_t  to_i64() const;   { return to_any<int64_t>();    }
-uint64_t to_u64() const;   { return to_any<uint64_t>();   }
+    int64_t  to_i64() const   { return to_any<int64_t>();    }
+    uint64_t to_u64() const   { return to_any<uint64_t>();   }
 
-//-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
-//! Case insensitive, all characters except hex are ignored.
-//! NB! If the number of valid characters is odd, the first is considered to be zero.
-static  VByteBuffer from_hex(  const std::string& src );
-VByteBuffer from_hex() const;
+    //! Case insensitive, all characters except hex are ignored.
+    //! NB! If the number of valid characters is odd, the first is considered to be zero.
+    static  vbyte_buffer from_hex(  const std::string& src );
+    vbyte_buffer from_hex() const;
 
-//! Solid text, lowercase.
-VByteBuffer tohex () const;
+    //! Solid text, lowercase.
+    vbyte_buffer tohex () const;
 
-//! Solid text, in capitals.
-VByteBuffer toHex () const;
+    //! Solid text, in capitals.
+    vbyte_buffer toHex () const;
 
-//! With delimiters, lowercase.
-VByteBuffer to_hex( char separator = ' ' ) const;
+    //! With delimiters, lowercase.
+    vbyte_buffer to_hex( char separator = ' ' ) const;
 
-//! With delimiters, in capitals.
-VByteBuffer to_Hex( char separator = ' ' ) const;
+    //! With delimiters, in capitals.
+    vbyte_buffer to_Hex( char separator = ' ' ) const;
 
-static bool is_hex_symbol( char ch ) noexcept;
+    static bool is_hex_symbol( char ch ) noexcept;
 
-//-----------------------------------------------------------------------------------
-//! NB! The split methods do not append a null value to the end if the separator
-//! was the last character.
-//! \example split("A|B", '|') == split("A|B|", '|')
-//! But for an empty input string, an empty vector will be returned:
-//! \example split("", '|') == vector{},
-//! \example split("|", '|') == vector{vbyte_buffer{}};
+    //-----------------------------------------------------------------------------------
+    //! NB! The split methods do not append a null value to the end if the separator
+    //! was the last character.
+    //! \example split("A|B", '|') == split("A|B|", '|')
+    //! But for an empty input string, an empty vector will be returned:
+    //! \example split("", '|') == vector{},
+    //! \example split("|", '|') == vector{vbyte_buffer{}};
 
-//! split() cuts by splitter, it also captures empty ones.
-static vector split( const std::string& data, char splitter );
+    //! split() cuts by splitter, it also captures empty ones.
+    static vector split( const std::string& data, char splitter );
 
-vector split( char splitter ) const;
+    vector split( char splitter ) const;
 
-//! Cuts text using all stripes separators (std :: isspace).
-//! Throws out all the empty ones, if we cut it like that, anyway, we work with text.
-vector split_by_spaces() const;
+    //! Cuts text using all stripes separators (std :: isspace).
+    //! Throws out all the empty ones, if we cut it like that, anyway, we work with text.
+    vector split_by_spaces() const;
 
-//! Strips off leading and trailing spaces.
-VByteBuffer & trim_spaces();
+    //! Strips off leading and trailing spaces.
+    vbyte_buffer & trim_spaces();
 
-//-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
-//! Turns bytes inside out, i.e. <LE> <-> <BE>.
-template<typename T>
-static typename std::enable_if<std::is_arithmetic<T>::value, T>::type
-reverse_T( T src ) noexcept;
+    //! Turns bytes inside out, i.e. <LE> <-> <BE>.
+    template<typename T>
+    static typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+    reverse_T( T src ) noexcept;
 
-//-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
 private:
 
-std::string _buf;
+    std::string _buf;
 
-//-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
-template<typename T> void _append( const T& val );
+    template<typename T> void _append( const T& val );
 
 };
 //=======================================================================================
@@ -210,9 +210,9 @@ template<typename T> void _append( const T& val );
 
 //=======================================================================================
 
-std::ostream & operator << ( std::ostream& os, const VByteBuffer& buf );
+std::ostream & operator << ( std::ostream& os, const vbyte_buffer& buf );
 
-VByteBuffer operator + ( const VByteBuffer& lhs, const VByteBuffer& rhs );
+vbyte_buffer operator + ( const vbyte_buffer& lhs, const vbyte_buffer& rhs );
 
 //=======================================================================================
 
@@ -223,7 +223,7 @@ VByteBuffer operator + ( const VByteBuffer& lhs, const VByteBuffer& rhs );
 //  NB! Этот метод скопипащен из vcat::from_text.
 //  Пока что, волевым усилием принято держать этот код и там и там.
 template <typename T>
-T VByteBuffer::to_any() const
+T vbyte_buffer::to_any() const
 {
     std::istringstream ss( _buf );
     T res;
@@ -243,7 +243,7 @@ T VByteBuffer::to_any() const
 #endif
 template<typename T>
 typename std::enable_if< std::is_arithmetic<T>::value, T>::type
-VByteBuffer::reverse_T( T val ) noexcept
+vbyte_buffer::reverse_T( T val ) noexcept
 {
     static_assert ( sizeof(T) <= 8, "Cannot reverse values more than 8 bytes." );
 
@@ -265,7 +265,7 @@ VByteBuffer::reverse_T( T val ) noexcept
 #pragma GCC diagnostic pop
 //=======================================================================================
 template<typename T>
-void VByteBuffer::_append( const T& val )
+void vbyte_buffer::_append( const T& val )
 {
     const char* ptr = static_cast<const char*>( static_cast<const void*>(&val) );
     _buf.append( ptr, sizeof(T) );
@@ -273,7 +273,7 @@ void VByteBuffer::_append( const T& val )
 //=======================================================================================
 template<typename T>
 typename std::enable_if<std::is_arithmetic<T>::value, void>::type
-VByteBuffer::append_LE( T val )
+vbyte_buffer::append_LE( T val )
 {
 #if BYTE_ORDER == BIG_ENDIAN
     val = vbyte_buffer::reverse_T( val );
@@ -283,10 +283,10 @@ VByteBuffer::append_LE( T val )
 //=======================================================================================
 template<typename T>
 typename std::enable_if<std::is_arithmetic<T>::value, void>::type
-VByteBuffer::append_BE( T val )
+vbyte_buffer::append_BE( T val )
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
-    val = VByteBuffer::reverse_T( val );
+    val = vbyte_buffer::reverse_T( val );
 #endif
     _append( val );
 }

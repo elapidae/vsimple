@@ -13,11 +13,11 @@ isEmpty(qi_vsignal) {
     qi_vsignal = 1;
     isEmpty(qi_not_print_pri_messages): message("=== vsignal appended ===")
 
-    isEmpty(VLIBS_DIR): error("Need VLIBS_DIR correct path.")
+    isEmpty(VSIMPLE_DIR): error("Need VSIMPLE_DIR correct path.")
 
-    INCLUDEPATH += $$VLIBS_DIR/vsignal
+    INCLUDEPATH += $$VSIMPLE_DIR/vsignal
    
-    HEADERS     += $$VLIBS_DIR/vsignal/vsignal.h 
+    HEADERS     += $$VSIMPLE_DIR/vsignal/vsignal.h 
 }
 # vsignal.pri
 #========================================================================================
