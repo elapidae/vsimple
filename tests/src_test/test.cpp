@@ -7,7 +7,7 @@
 #include "vgit_test.h"
 #include "vlog_test.h"
 #include "vnetwork_test.h"
-#include "vposix_test.h"
+//#include "vposix_test.h"
 #include "vprofile_test.h"
 #include "vserial_port_test.h"
 #include "vsettings_test.h"

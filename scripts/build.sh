@@ -1,16 +1,14 @@
 #!/bin/bash
 
-scripts/update_submodules.sh
-
 if [ -d "build" ]; 
 then
 	rm -rf build/*
 else
-        mkdir -p build
+	mkdir -p build
 fi
 
 cd build
 
-cmake -DGUI=OFF .. 
+cmake .. 
 
 make -j $(($(nproc) - 1))

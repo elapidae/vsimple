@@ -1,19 +1,19 @@
 #!/bin/bash
 
-if [ -d "build" ]; 
+if [ -d "build_sanalize" ]; 
 then
-	rm -rf build/*
+	rm -rf build_sanalize/*
 else
-        mkdir -p build
+	mkdir -p build_sanalize
 fi
 
-cd build
-cmake -DGUI=OFF .. &>/dev/null
+cd build_sanalize
+cmake ..
 
-main=$(find ../src/ -name main.cpp)
+src=$(find ../include/)
 
 include_args="$(cat ./compile_commands.json | grep command | sed "s/-I/\n-I/g" | grep -v command | awk '{print $1}' | sed "s/-I/-I /g")"
 
 checks=$(cat ../cfg/sanalyzer.cfg)
 
-clang-tidy -config="$checks" $main -p=. --header-filter="src/*" -- $include_args -std=c++17 2>/dev/null
+clang-tidy -config="$checks" $src -p=. --header-filter="include/*" -- $include_args -std=c++17 2>/dev/null

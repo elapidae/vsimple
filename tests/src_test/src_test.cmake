@@ -19,7 +19,7 @@ include( ${CMAKE_CURRENT_LIST_DIR}/vcompiler_traits_test/vcompiler_traits_test.c
 include( ${CMAKE_CURRENT_LIST_DIR}/vgit_test/vgit_test.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/vlog_test/vlog_test.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/vnetwork_test/vnetwork_test.cmake )
-include( ${CMAKE_CURRENT_LIST_DIR}/vposix_test/vposix_test.cmake )
+#include( ${CMAKE_CURRENT_LIST_DIR}/vposix_test/vposix_test.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/vprofile_test/vprofile_test.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/vserial_port_test/vserial_port_test.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/vsettings_test/vsettings_test.cmake )
