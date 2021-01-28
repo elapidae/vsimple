@@ -8,5 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Install main dependencies
+      run: ./scripts/install.sh    
+
     - name: Install third-party dependencies
       run: ./scripts/install-third-party.sh
