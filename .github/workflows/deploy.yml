@@ -27,8 +27,8 @@ jobs:
 #    - name: Code style
 #      run: ./scripts/codestyle.sh
 
-    - name: Documentation
-      run: ./scripts/doc.sh
+#    - name: Documentation
+#      run: ./scripts/doc.sh
 
     - name: Dynamic analysis
       run: ./scripts/danalyze.sh
