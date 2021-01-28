@@ -7,7 +7,5 @@ jobs:
     name: Deploy on Ubuntu 18.04
     runs-on: ubuntu-latest
     steps:
-    - name: Install main dependencies
-      run: sudo apt-get install cmake
     - name: Install third-party dependencies
-      run: ./scripts/install-third-party.sh
+      run: ls
