@@ -15,5 +15,20 @@ jobs:
     - name: Install third-party dependencies
       run: ./scripts/install-third-party.sh
 
-    - name: Build library
-      run: ./scripts/build.sh      
+    - name: Build
+      run: ./scripts/build.sh
+
+    - name: Tests
+      run: ./scripts/test.sh
+
+    - name: Static analysis
+      run: ./scripts/sanalyze.sh
+
+    - name: Code style
+      run: ./scripts/codestyle.sh
+
+    - name: Documentation
+      run: ./scripts/doc.sh
+
+    - name: Dynamic analysis
+      run: ./scripts/danalyze.sh
