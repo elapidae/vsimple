@@ -9,29 +9,32 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install main dependencies
-      run: ./scripts/install.sh    
+    - name: Install valgrind
+      run: sudo apt-get install valgrind    
 
-    - name: Install third-party dependencies
-      run: ./scripts/install-third-party.sh
+    # - name: Install main dependencies
+    #   run: ./scripts/install.sh    
 
-    - name: Build
-      run: ./scripts/build.sh
+    # - name: Install third-party dependencies
+    #   run: ./scripts/install-third-party.sh
 
-    - name: Tests
-      run: ./scripts/test.sh
+    # - name: Build
+    #   run: ./scripts/build.sh
 
-    - name: Static analysis
-      run: ./scripts/sanalyze.sh
+    # - name: Tests
+    #   run: ./scripts/test.sh
 
-    - name: Code style
-      run: ./scripts/codestyle.sh
+    # - name: Static analysis
+    #   run: ./scripts/sanalyze.sh
 
-    - name: Documentation
-      run: ./scripts/doc.sh
+    # - name: Code style
+    #   run: ./scripts/codestyle.sh
 
-    - name: Dynamic analysis
-      run: ./scripts/danalyze.sh
+    # - name: Documentation
+    #   run: ./scripts/doc.sh
 
-    - name: Clang Tidy version
-      run: clang-tidy --version
+    # - name: Dynamic analysis
+    #   run: ./scripts/danalyze.sh
+
+    # - name: Clang Tidy version
+    #   run: clang-tidy --version
