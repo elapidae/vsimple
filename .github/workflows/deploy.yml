@@ -4,4 +4,8 @@ on: [push, pull_request]
 
 jobs:
   deploy:
+    name: Deploy on Ubuntu 18.04
     runs-on: ubuntu-latest
+    steps:
+    - name: Install main dependencies
+      run: ./scripts/install.sh
