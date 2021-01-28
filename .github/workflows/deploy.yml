@@ -9,4 +9,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install third-party dependencies
-      run: ls
+      run: ./scripts/install-third-party.sh
