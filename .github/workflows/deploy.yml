@@ -15,33 +15,21 @@ jobs:
     - name: Install third-party dependencies
       run: ./scripts/install-third-party.sh
 
-    - name: Versions
-      run: gcc --version \
-        g++ --version \
-        cmake --version \
-        make --version \
-        clang-tidy --version \
-        lcov --version \
-        gcovr --version \
-        clang-tidy --version \
-        valgrind --version \
-        doxygen --version \
+    - name: Build
+      run: ./scripts/build.sh
 
-    # - name: Build
-    #   run: ./scripts/build.sh
+    - name: Tests
+      run: ./scripts/test.sh
 
-    # - name: Tests
-    #   run: ./scripts/test.sh
+    - name: Static analysis
+      run: ./scripts/sanalyze.sh
 
-    # - name: Static analysis
-    #   run: ./scripts/sanalyze.sh
+    - name: Code style
+      run: ./scripts/codestyle.sh
 
-    # - name: Code style
-    #   run: ./scripts/codestyle.sh
+    - name: Documentation
+      run: ./scripts/doc.sh
 
-    # - name: Documentation
-    #   run: ./scripts/doc.sh
-
-    # - name: Dynamic analysis
-    #   run: ./scripts/danalyze.sh
+    - name: Dynamic analysis
+      run: ./scripts/danalyze.sh
     
