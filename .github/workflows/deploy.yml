@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install main dependencies
-      run: ./scripts/install.sh
+      run: sudo apt-get install build-essential gcc-5 g++5
