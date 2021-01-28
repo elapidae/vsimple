@@ -24,8 +24,8 @@ jobs:
 #    - name: Static analysis
 #      run: ./scripts/sanalyze.sh
 
-    - name: Code style
-      run: ./scripts/codestyle.sh
+#    - name: Code style
+#      run: ./scripts/codestyle.sh
 
     - name: Documentation
       run: ./scripts/doc.sh
