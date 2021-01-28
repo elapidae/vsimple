@@ -1,0 +1,18 @@
+dist: groovy # Using Ubuntu 20.10 Groovy Gorilla
+sudo: required # Use Virtual Machine
+
+language: cpp
+
+os:
+  - linux
+
+compiler:
+  - gcc
+  - clang
+
+env:
+  # List of environment variables affecting the build matrix:
+  - TARGET_CPU=amd64 BUILD_CONFIGURATION=Debug
+  - TARGET_CPU=amd64 BUILD_CONFIGURATION=Release
+  - TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
+  - TARGET_CPU=x86 BUILD_CONFIGURATION=Release
