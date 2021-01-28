@@ -16,16 +16,16 @@ jobs:
       run: ./scripts/install-third-party.sh
 
     - name: Versions
-      run: gcc --version
-      run: g++ --version
-      run: cmake --version
-      run: make --version
-      run: clang-tidy --version
-      run: lcov --version
-      run: gcovr --version
-      run: clang-tidy --version
-      run: valgrind --version
-      run: doxygen --version
+      run: gcc --version \
+        g++ --version \
+        cmake --version \
+        make --version \
+        clang-tidy --version \
+        lcov --version \
+        gcovr --version \
+        clang-tidy --version \
+        valgrind --version \
+        doxygen --version \
 
     # - name: Build
     #   run: ./scripts/build.sh
