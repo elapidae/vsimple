@@ -30,6 +30,6 @@ jobs:
     - name: Documentation
       run: ./scripts/doc.sh
 
-    - name: Dynamic analysis
-      run: ./scripts/danalyze.sh
+#    - name: Dynamic analysis
+#      run: ./scripts/danalyze.sh
     
